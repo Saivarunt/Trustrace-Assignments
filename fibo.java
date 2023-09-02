@@ -55,6 +55,36 @@
 //	}
 //}
 
+//import java.math.*;
+//class Fb{
+//	int fb(BigInteger a1, BigInteger b1,int number){
+//		if(number==0){
+//			System.out.println(a1.add(b1));
+//		}
+//		else{
+//		BigInteger temp = new BigInteger("0"); 
+//		temp=b1;
+//		b1=b1.add(a1);
+//		a1=temp;
+//		System.out.println(b1);
+//		fb(a1,b1,number-1);
+//		}
+//	return 0;
+//	}}
+//public class fibo{
+//	public static void main(String args[]){
+//		int num = Integer.parseInt(args[0]);
+//		BigInteger a = new BigInteger("0");
+//		BigInteger b = new BigInteger("1"); 
+//		System.out.println(a);
+//		System.out.println(b);
+//		Fb obj=new Fb();
+//		obj.fb(a,b,num);
+//
+//	}
+//}
+
+//Printing it in reverse
 import java.math.*;
 class Fb{
 	int fb(BigInteger a1, BigInteger b1,int number){
@@ -66,8 +96,8 @@ class Fb{
 		temp=b1;
 		b1=b1.add(a1);
 		a1=temp;
-		System.out.println(b1);
 		fb(a1,b1,number-1);
+		System.out.println(b1);
 		}
 	return 0;
 	}}
@@ -76,10 +106,9 @@ public class fibo{
 		int num = Integer.parseInt(args[0]);
 		BigInteger a = new BigInteger("0");
 		BigInteger b = new BigInteger("1"); 
-		System.out.println(a);
-		System.out.println(b);
 		Fb obj=new Fb();
 		obj.fb(a,b,num);
-
+		System.out.println(b);
+		System.out.println(a);
 	}
 }
