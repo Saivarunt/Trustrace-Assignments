@@ -1,3 +1,4 @@
+// Fibonacci Series
 import java.util.*;
 public class fibo{
 	public static void main(String args[]){
@@ -8,6 +9,7 @@ public class fibo{
 		int a=0;
 		int b=1;
 		int temp;
+		System.out.println("Fibonacci Series: ");
 		while(i+2<num){
 			if (i==0){
 			System.out.println(a);
@@ -15,8 +17,8 @@ public class fibo{
 			}
 			temp=b;
 			b= a+b;
-			System.out.println(b);
 			a=temp;
+			System.out.println(b);
 			i++;
 		}
 	}
