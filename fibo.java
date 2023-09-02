@@ -59,7 +59,6 @@ class Fb{
 	int fb(int a1, int b1,int number){
 		if(number==0){
 			System.out.println(a1+b1);
-			return 0;
 		}
 		else{
 		int temp=b1;
