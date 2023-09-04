@@ -1,0 +1,5 @@
+We were able to access the protected class memebers since they were part of the same directory,
+files part of the same directory are considered to be part of the same package.
+If we were to put them in seperate folders and try to do the same opertaion we would have a conflict and we would not be able to access the protected memebers.
+
+Files and classes part of the same package have access to protected members.
