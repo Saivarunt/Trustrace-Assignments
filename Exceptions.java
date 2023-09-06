@@ -69,6 +69,35 @@
 //     }
 // }
 
+// import java.util.Scanner;
+
+// class Exp extends Exception{
+//     public Exp(String message){
+//         super(message);
+//         System.out.println("Custome exception");
+
+//     }
+// }
+
+// public class Exceptions{
+//     public static void main(String args[]){
+//         Scanner sc = new Scanner(System.in);
+//         try{
+//             System.out.println("Enter Number 1: ");
+//             Integer n1=sc.nextInt();
+//             System.out.println("Enter Number 2: ");
+//             Integer n2=sc.nextInt();
+//             if(n2==0){
+//                 throw new Exp("Div by Zero exception");
+//             }
+//             System.out.println(n1/n2);
+//         }
+//         catch (Exp e){
+//             System.out.println(e);
+//         }
+//     }
+// }
+
 import java.util.Scanner;
 
 class Exp extends Exception{
@@ -82,17 +111,15 @@ class Exp extends Exception{
 public class Exceptions{
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Number 1: ");
+        Integer n1=sc.nextInt();
+        System.out.println("Enter Number 2: ");
+        Integer n2=sc.nextInt();
         try{
-            System.out.println("Enter Number 1: ");
-            Integer n1=sc.nextInt();
-            System.out.println("Enter Number 2: ");
-            Integer n2=sc.nextInt();
-            if(n2==0){
-                throw new Exp("Div by Zero exception");
-            }
-            System.out.println(n1/n2);
+            // assert n2>0:"Number is < 0 ";
+            assert n2>0;
         }
-        catch (Exp e){
+        catch(AssertionError e){
             System.out.println(e);
         }
     }
