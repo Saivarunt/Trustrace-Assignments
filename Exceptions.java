@@ -98,9 +98,36 @@
 //     }
 // }
 
+// import java.util.Scanner;
+
+// class Exp extends Exception{
+//     public Exp(String message){
+//         super(message);
+//         System.out.println("Custome exception");
+
+//     }
+// }
+
+// public class Exceptions{
+//     public static void main(String args[]){
+//         Scanner sc = new Scanner(System.in);
+//         System.out.println("Enter Number 1: ");
+//         Integer n1=sc.nextInt();
+//         System.out.println("Enter Number 2: ");
+//         Integer n2=sc.nextInt();
+//         try{
+//             // assert n2>0:"Number is < 0 ";
+//             assert n2>0;
+//         }
+//         catch(AssertionError e){
+//             System.out.println(e);
+//         }
+//     }
+// }
+
 import java.util.Scanner;
 
-class Exp extends Exception{
+class Exp extends Error{
     public Exp(String message){
         super(message);
         System.out.println("Custome exception");
@@ -117,9 +144,14 @@ public class Exceptions{
         Integer n2=sc.nextInt();
         try{
             // assert n2>0:"Number is < 0 ";
+            try{
             assert n2>0;
+            }
+            catch(AssertionError e){
+            throw new Exp("Assertion error");
+            }
         }
-        catch(AssertionError e){
+        catch(Exp e){
             System.out.println(e);
         }
     }
