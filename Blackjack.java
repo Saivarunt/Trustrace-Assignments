@@ -41,8 +41,14 @@ public class Blackjack implements Cards{
             if (obj.playerTurn){
                 //player
                 rand1 = obj.getRand(c.ar);
+                if (Cards.ar.get(rand1)<=0){
+                    continue;
+                }
+                
                 rand2 = obj.getRand(c.ar);
-
+                if (Cards.ar.get(rand2)<=0){
+                    continue;
+                }
                 c.ar.put(rand1,Cards.ar.get(rand1)-1);
                 c.ar.put(rand2,Cards.ar.get(rand2)-1);
 
@@ -52,8 +58,13 @@ public class Blackjack implements Cards{
 
                 //dealer
                 rand1 = obj.getRand(c.ar);
+                if (Cards.ar.get(rand1)<=0){
+                    continue;
+                }
                 rand2 = obj.getRand(c.ar);
-
+                if (Cards.ar.get(rand2)<=0){
+                    continue;
+                }
                 c.ar.put(rand1,Cards.ar.get(rand1)-1);
                 c.ar.put(rand2,Cards.ar.get(rand2)-1);
                 
@@ -70,6 +81,10 @@ public class Blackjack implements Cards{
                     String hitstay = sc.nextLine();
                     if (hitstay.equals("hit")){
                         randomval = obj.getRand(c.ar);
+                        if (Cards.ar.get(randomval)<=0){
+                            System.out.println("Generating new random number please hold");
+                            continue;
+                        }
                         obj.player = obj.player + randomval;
                         c.ar.put(randomval,Cards.ar.get(randomval)-1);
                         System.out.println("Your new total is "+ obj.player);
@@ -89,13 +104,22 @@ public class Blackjack implements Cards{
             }
             else{
                 System.out.println("Dealer's hidden card was " + rand2);
+                System.out.println("Dealer's Total is: " + obj.dealer);
+                if (obj.dealer>16){
+                    System.out.println("You won!");
+                    break;
+                }
                 System.out.println("Do you want to 'hit' or 'stay'?");
                 String hitstay = sc.nextLine();
                 if (hitstay.equals("hit")){
                     randomval = obj.getRand(c.ar);
                     obj.dealer = obj.dealer + randomval;
+                    if (Cards.ar.get(randomval)<=0){
+                        System.out.println("Generating new random number please hold");
+                        continue;
+                    }
                     c.ar.put(randomval,Cards.ar.get(randomval)-1);
-                    System.out.println("Your new total is "+ obj.dealer);
+                    System.out.println("Dealer's new total is "+ obj.dealer);
                 }
                 else if (hitstay.equals("stay")){
                     obj.playerTurn = true;
