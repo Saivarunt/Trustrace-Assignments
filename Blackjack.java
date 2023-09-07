@@ -11,7 +11,7 @@ interface Cards{
     put(8,4);
     put(9,4);
     put(10,4);
-    put(11,12);
+    put(11,16);
     }};
 
 }
