@@ -22,9 +22,10 @@
 //     Random generator = new Random();
 
 //     Integer getRand(HashMap<Integer, Integer> arr){
-//                 var randomValue = arr.keySet().toArray()[generator.nextInt(arr.size())].toString();
-//                 Integer r = Integer.valueOf(randomValue);
-//         return r;
+//                 // var randomValue = arr.keySet().toArray()[generator.nextInt(2,arr.size()+2)].toString();
+//                 // Integer r = Integer.valueOf(randomValue);
+                
+//         return generator.nextInt(2,arr.size()+2);
 //     }
 // }
 
@@ -121,8 +122,25 @@
 //                     c.ar.put(randomval,Cards.ar.get(randomval)-1);
 //                     System.out.println("Dealer's new total is "+ obj.dealer);
 //                 }
+//                 else if(obj.dealer>=16){
+//                     System.out.println("Dealer chooses to stay");
+//                     if(obj.dealer>obj.player){
+//                         System.out.println("You won!");
+//                     }
+//                     else{
+//                         System.out.println("You lost");
+//                     }
+//                     break;
+//                 }
 //                 else if (hitstay.equals("stay")){
-//                     obj.playerTurn = true;
+//                     System.out.println("Dealer chooses to stay");
+//                     if(obj.dealer>obj.player){
+//                         System.out.println("You won!");
+//                     }
+//                     else{
+//                         System.out.println("You lost");
+//                     }
+//                     break;
 //                 }
 //                 else{
 //                     System.out.println("Enter valid value. Game is now restarting dealer.");
@@ -250,11 +268,10 @@ public class Blackjack implements Cards{
             else{
                 System.out.println("Dealer's hidden card was " + rand2);
                 System.out.println("Dealer's Total is: " + obj.dealer);
-                if (obj.dealer>16){
+                if (obj.dealer>21){
                     System.out.println("You won!");
                     break;
                 }
-                System.out.println("Do you want to 'hit' or 'stay'?");
                 Integer hitstay = obj.dealerRand();
                 if (hitstay==0){
                     System.out.println("Dealer chooses to hit");
@@ -267,9 +284,25 @@ public class Blackjack implements Cards{
                     c.ar.put(randomval,Cards.ar.get(randomval)-1);
                     System.out.println("Dealer's new total is "+ obj.dealer);
                 }
+                else if(obj.dealer>=16){
+                    System.out.println("Dealer chooses to stay");
+                    if(obj.dealer>obj.player){
+                        System.out.println("You won!");
+                    }
+                    else{
+                        System.out.println("You lost");
+                    }
+                    break;
+                }
                 else if (hitstay==1){
                     System.out.println("Dealer chooses to stay");
-                    obj.playerTurn = true;
+                    if(obj.dealer>obj.player){
+                        System.out.println("You won!");
+                    }
+                    else{
+                        System.out.println("You lost");
+                    }
+                    break;
                 }
                 else{
                     System.out.println("Enter valid value. Game is now restarting dealer.");
