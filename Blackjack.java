@@ -557,3 +557,31 @@ public class Blackjack implements Cards{
         sc.close();
     }
 }
+
+// Time / Space complexity
+// Hashmap initiation: 1
+
+
+// getRand() - arr.size() - 10 = N
+
+// dealerRand() - 2 = N
+
+// Main function
+
+// Getting user input to set deck count => n * 10 (n- number of decks) into number of base cards : N (runs 10 times)
+
+// Game start - while loop will run atleast 2 times and atmost N times : N
+
+// Player turn - while loop will run atleast 1 time and atmost N times making the outer loop go N^2 times
+
+// Checks to see if random value generated is valid happens N times if wrong random value which is not part of the deck was generated
+
+// Loop to update number of decks- N
+// Main loop- N
+// Player loop- N
+// Rand function inside main and player loop will run N times 
+// Rand function call is nullified since it is inside of a loop which itself runs N times.
+
+
+// Therefore N^2+N for Main function;
+// N + N for random functions which generate random values.
