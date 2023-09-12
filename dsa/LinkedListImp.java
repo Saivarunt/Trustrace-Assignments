@@ -514,6 +514,7 @@
 
 
 package dsa;
+import java.util.*;
 class CDLL{
     Integer val;
     CDLL next;
@@ -607,8 +608,9 @@ class CDLL{
         CDLL temp = head;
         if(ind==0){
             node.next=temp;
-            temp.prev=node;
             head=node;
+            tail.next=node;
+            temp.prev=node;
             node.prev=tail;
             return;
         }
@@ -619,86 +621,85 @@ class CDLL{
                 node.prev=temp;
                 node.next=ntemp;
                 ntemp.prev=node;
-                if(temp.next==head){
-                    tail=tail.next;
-                }
+                tail=node;
+                return;
             }
             temp=temp.next;
         }
-        head.prev=tail.next;
+        // tail=tail.next;
+        // head.prev=tail;
         
     }
 }
 
 public class LinkedListImp {
     public static void main(String[] args) {
-//         Scanner sc = new Scanner(System.in);
-//         System.out.println("Enter val");
-//         Integer v = sc.nextInt();
-//         sc.nextLine();
-//         CDLL n = new CDLL(v);
-//         n.head = n;
-//         n.tail = n;
-//         while(true){
-//             System.out.println("Choose to add, remove, reverse, find, insert or show elements: ");
-//             String op = sc.nextLine();
-
-//             if (op.equals("add")){
-//                 System.out.println("Enter val: ");
-//                 v = sc.nextInt();
-//                 sc.nextLine();
-//                 n.add(v);
-//             }
-//             if (op.equals("remove")){
-//                 System.out.println("Enter val: ");
-//                 v = sc.nextInt();
-//                 sc.nextLine();
-//                 n.remove(v);
-//             }
-//             if (op.equals("reverse")){
-//                 n.reverse();
-//             }
-//             if (op.equals("find")){
-//                 System.out.println("Enter val: ");
-//                 v = sc.nextInt();
-//                 sc.nextLine();
-//                 n.find(v);
-//             }
-//             if (op.equals("insert")){
-//                 System.out.println("Enter index: ");
-//                 Integer indx = sc.nextInt();
-//                 System.out.println("Enter val: ");
-//                 v = sc.nextInt();
-//                 sc.nextLine();
-//                 n.insert(indx, v);
-//             }
-//             if (op.equals("show")){
-//                 n.show();
-//             }
-//             else{
-//                 break;
-//             }
-//         }
-        CDLL n = new CDLL(1);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter val");
+        Integer v = sc.nextInt();
+        sc.nextLine();
+        CDLL n = new CDLL(v);
         n.head = n;
         n.tail = n;
-        n.add(2);
-        n.add(3);
-        n.add(4);
-        n.add(5);
-        n.remove(5);
-        n.remove(1);
-        n.show();
-        n.reverse();
-        n.show();
-        n.reverse();
-        n.show();
-        n.find(2);
-        n.find(10);
-        n.insert(0,1);
-        n.insert(4,5);
-        System.out.println("head "+n.head.prev.val+"tail "+n.tail.next.val);
-        n.show();
+        while(true){
+            System.out.println("Choose to add, remove, reverse, find, insert or show elements: ");
+            String op = sc.nextLine();
+
+            if (op.equals("add")){
+                System.out.println("Enter val: ");
+                v = sc.nextInt();
+                sc.nextLine();
+                n.add(v);
+            }
+            if (op.equals("remove")){
+                System.out.println("Enter val: ");
+                v = sc.nextInt();
+                sc.nextLine();
+                n.remove(v);
+            }
+            if (op.equals("reverse")){
+                n.reverse();
+            }
+            if (op.equals("find")){
+                System.out.println("Enter val: ");
+                v = sc.nextInt();
+                sc.nextLine();
+                n.find(v);
+            }
+            if (op.equals("insert")){
+                System.out.println("Enter index: ");
+                Integer indx = sc.nextInt();
+                System.out.println("Enter val: ");
+                v = sc.nextInt();
+                sc.nextLine();
+                n.insert(indx, v);
+            }
+            if (op.equals("show")){
+                n.show();
+            }
+            else{
+                break;
+            }
+        }
+        // CDLL n = new CDLL(1);
+        // n.head = n;
+        // n.tail = n;
+        // n.add(2);
+        // n.add(3);
+        // n.add(4);
+        // n.add(5);
+        // n.remove(5);
+        // n.remove(1);
+        // n.show();
+        // n.reverse();
+        // n.show();
+        // n.reverse();
+        // n.show();
+        // n.find(2);
+        // n.find(10);
+        // n.insert(0,1);
+        // n.insert(4,5);
+        // n.show();
 
     }
 }
