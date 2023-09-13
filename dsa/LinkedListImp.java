@@ -576,17 +576,27 @@ class CDLL{
         CDLL temp1 = head;
         CDLL ttail = tail;
 
-        CDLL t = tail;
         CDLL temp=head;
-
-        while(temp!=head){
-            temp.prev = temp.next;
-            temp.next = t;
+        CDLL nxt=temp.next;
+        while(temp.next!=head){
+            System.out.println("inloop");
+            temp.next = temp.prev;
+            temp.prev = nxt;
+            temp=temp.prev;
+            nxt=nxt.next;
+        }
+        if(temp.next==head){
+            temp.next = temp.prev;
+            temp.prev = nxt;
             temp=temp.prev;
         }
-
+        System.out.println("head: "+head.val+"tail: "+tail.val);
         head = ttail;
         tail=temp1;
+        tail.next=head;
+        head.prev=tail;
+        System.out.println("head: "+head.val+"next"+head.next.val+"tnext"+tail.next.val+"tail: "+tail.val);
+
     }
     void find(Integer f){
         if (head.val==f){
