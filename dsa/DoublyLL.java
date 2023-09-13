@@ -119,7 +119,62 @@ class DLL{
         size++;   
     }
     void swap(Integer v1,Integer v2){
-        
+        if(head.val==v1 && tail.val==v2){
+            DLL temp=head;
+            DLL ttail=tail;
+            // System.out.println("hv: "+head.val+" hn:"+head.next.next.val +"tv:"+tail.val+" tp:"+tail.prev.val);
+
+            ttail.next=temp.next;
+            temp.next.prev=ttail;
+            
+            temp.prev=ttail.prev;
+            ttail.prev.next=temp;
+
+            ttail.prev=null;
+            temp.next=null;
+            
+            head = ttail;
+            tail=temp;
+            // System.out.println("hv: "+head.val+" hn:"+head.next.next.val +"tv:"+tail.val+" tp:"+tail.prev.val);
+            return;
+        }
+        DLL node=head;
+        DLL n1=null,n2=null;
+        while(node.next!=null){
+            if(node.val==v1){
+                n1=node;
+            }
+            else if(node.val==v2){
+                n2=node;
+            }
+            node=node.next;
+        }
+        if(n1!=null && n2!=null){
+            if(n1.next==n2){
+            n2.next.prev=n1;
+            n1.prev.next=n2;
+            n1.next=n2.next;
+            n2.prev=n1.prev;
+            n2.next=n1;
+            n1.prev=n2;
+            }
+            else{
+            n1.prev.next=n2;
+            n2.prev.next=n1;
+            n1.next.prev=n2;
+            n2.next.prev=n1;
+            DLL temp=n1.next;
+            n1.next=n2.next;
+            n2.next=temp;
+            temp=n1.prev;
+            n1.prev=n2.prev;
+            n2.prev=temp;
+            }
+        }
+        else{
+            System.out.println("given value is not in list");
+        }
+
     }
 }
 
@@ -133,7 +188,7 @@ public class DoublyLL {
         n.head = n;
         n.tail = n;
         while(true){
-            System.out.println("Choose to add, remove, reverse, find, insert or show elements: ");
+            System.out.println("Choose to add, remove, reverse, find, insert, swap or show elements: ");
             String op = sc.nextLine();
 
             if (op.equals("add")){
