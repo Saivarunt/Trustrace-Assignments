@@ -630,6 +630,35 @@ class CDLL{
         // head.prev=tail;
         
     }
+    void swap(Integer val1, Integer val2) {
+        CDLL node=head;
+        CDLL n1=null,n2=null;
+        while(node.next!=head){
+            if(node.val==val1){
+                n1=node;
+            }
+            else if(node.val==val2){
+                n2=node;
+            }
+            node=node.next;
+        }
+        if(n1!=null && n2!=null){
+            n1.prev.next=n2;
+            n2.prev.next=n1;
+            n1.next.prev=n2;
+            n2.next.prev=n1;
+            CDLL temp=n1.next;
+            n1.next=n2.next;
+            n2.next=temp;
+            temp=n1.prev;
+            n1.prev=n2.prev;
+            n2.prev=temp;
+        }
+        else{
+            System.out.println("given value is not in the list");
+        }
+
+    }
 }
 
 public class LinkedListImp {
@@ -642,7 +671,7 @@ public class LinkedListImp {
         n.head = n;
         n.tail = n;
         while(true){
-            System.out.println("Choose to add, remove, reverse, find, insert or show elements: ");
+            System.out.println("Choose to add, remove, reverse, find, swap, insert or show elements: ");
             String op = sc.nextLine();
 
             if (op.equals("add")){
@@ -650,21 +679,25 @@ public class LinkedListImp {
                 v = sc.nextInt();
                 sc.nextLine();
                 n.add(v);
+                continue;
             }
             if (op.equals("remove")){
                 System.out.println("Enter val: ");
                 v = sc.nextInt();
                 sc.nextLine();
                 n.remove(v);
+                continue;
             }
             if (op.equals("reverse")){
                 n.reverse();
+                continue;
             }
             if (op.equals("find")){
                 System.out.println("Enter val: ");
                 v = sc.nextInt();
                 sc.nextLine();
                 n.find(v);
+                continue;
             }
             if (op.equals("insert")){
                 System.out.println("Enter index: ");
@@ -673,9 +706,18 @@ public class LinkedListImp {
                 v = sc.nextInt();
                 sc.nextLine();
                 n.insert(indx, v);
+                continue;
             }
             if (op.equals("show")){
                 n.show();
+                continue;
+            }
+            if(op.equals("swap")){
+                System.out.println("Enter val1: ");
+                Integer v1 = sc.nextInt();
+                System.out.println("Enter val2: ");
+                v = sc.nextInt();
+                n.swap(v1, v);
             }
             else{
                 break;
