@@ -25,6 +25,7 @@ class Q{
         for(Integer i=0;i<size-1;i++){
             ar[i]=ar[i+1];
         }
+        ar[size-1]=null;
         System.out.println("dequeue");
         if (size<ar.length){
             ar[size]=0;

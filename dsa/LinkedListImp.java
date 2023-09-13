@@ -5,6 +5,7 @@ class LL{
     LL next;
     static LL head;
     static LL tail;
+    static Integer size=1;
     LL(Integer v){
         this.val = v;
         this.next = null;
@@ -14,11 +15,13 @@ class LL{
         node.next=null;
         tail.next = node;
         tail = node;
+        size++;
     }
     void remove(Integer r){
         if(head.val == r){
             head = head.next;
             System.out.println("Removed " + r);
+            size--;
             return;
         }
         LL temp = head.next;
@@ -32,6 +35,7 @@ class LL{
             prev = temp;
             temp=temp.next;
         }
+        size--;
     }
     void show(){
         LL temp = head;
@@ -76,6 +80,11 @@ class LL{
         if(ind==0){
             node.next=temp;
             head=node;
+            size++;
+            return;
+        }
+        if (ind>size){
+            System.out.println("Enter val less than "+size);
             return;
         }
         for(Integer i=0;i<ind;i++){
@@ -86,6 +95,8 @@ class LL{
             }
             temp=temp.next;
         }
+
+
         
     }
 }
@@ -108,21 +119,25 @@ public class LinkedListImp {
                 v = sc.nextInt();
                 sc.nextLine();
                 n.add(v);
+                continue;
             }
             if (op.equals("remove")){
                 System.out.println("Enter val: ");
                 v = sc.nextInt();
                 sc.nextLine();
                 n.remove(v);
+                continue;
             }
             if (op.equals("reverse")){
                 n.reverse();
+                continue;
             }
             if (op.equals("find")){
                 System.out.println("Enter val: ");
                 v = sc.nextInt();
                 sc.nextLine();
                 n.find(v);
+                continue;
             }
             if (op.equals("insert")){
                 System.out.println("Enter index: ");
@@ -131,9 +146,11 @@ public class LinkedListImp {
                 v = sc.nextInt();
                 sc.nextLine();
                 n.insert(indx, v);
+                continue;
             }
             if (op.equals("show")){
                 n.show();
+                continue;
             }
             else{
                 break;

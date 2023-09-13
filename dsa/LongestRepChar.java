@@ -1,11 +1,11 @@
 package dsa;
 import java.util.*;
 class Imp{
-    Integer max=1;
+    Integer max=0;
     Integer mainmax=0;
     void charrep(String s1,Integer k){
         Integer i=0;
-        Integer j=1;
+        Integer j=0;
         Integer itemp=0;
         Integer kcopy=k;
         Integer f=1;
@@ -20,15 +20,15 @@ class Imp{
                     }
                 }
                 else{
-                    System.out.println(i+""+s1.charAt(j)+""+j+""+itemp);
                     i=itemp;
-                    j=i+1;
+                    j=i;
                     k=kcopy;
                     f=1;
                     if(max>mainmax){
                         mainmax=max;
                     }
-                    max=1;
+                    max=0;
+                    continue;
                 }
             }
             else{
