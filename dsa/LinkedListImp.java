@@ -717,7 +717,9 @@ public class LinkedListImp {
                 Integer v1 = sc.nextInt();
                 System.out.println("Enter val2: ");
                 v = sc.nextInt();
+                sc.nextLine();
                 n.swap(v1, v);
+                continue;
             }
             else{
                 break;
