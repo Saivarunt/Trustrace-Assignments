@@ -641,6 +641,20 @@ class CDLL{
         
     }
     void swap(Integer val1, Integer val2) {
+        if(head.val==val1 && tail.val==val2){
+            CDLL temp=head;
+            CDLL ttail=tail;
+            temp.next.prev=ttail;
+            ttail.prev.next=temp;
+            ttail.next=temp.next;
+            temp.prev=ttail.prev;
+            
+            head = ttail;
+            tail=temp;
+            tail.next=head;
+            head.prev=tail;
+            return;
+        }
         CDLL node=head;
         CDLL n1=null,n2=null;
         while(node.next!=head){
@@ -653,6 +667,15 @@ class CDLL{
             node=node.next;
         }
         if(n1!=null && n2!=null){
+            if(n1.next==n2){
+            n2.next.prev=n1;
+            n1.prev.next=n2;
+            n1.next=n2.next;
+            n2.prev=n1.prev;
+            n2.next=n1;
+            n1.prev=n2;
+            }
+            else{
             n1.prev.next=n2;
             n2.prev.next=n1;
             n1.next.prev=n2;
@@ -663,9 +686,10 @@ class CDLL{
             temp=n1.prev;
             n1.prev=n2.prev;
             n2.prev=temp;
+            }
         }
         else{
-            System.out.println("given value is not in the list");
+            System.out.println("given value is not in list");
         }
 
     }
