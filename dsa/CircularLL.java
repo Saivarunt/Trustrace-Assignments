@@ -8,6 +8,7 @@ class CLL{
     CLL next;
     static CLL head;
     static CLL tail;
+    static Integer size=1;
     CLL(Integer v){
         this.val = v;
         this.next = null;
@@ -17,12 +18,14 @@ class CLL{
         node.next=head;
         tail.next = node;
         tail = node;
+        size++;
     }
     void remove(Integer r){
         if(head.val == r){
             head = head.next;
             tail.next=head;
             System.out.println("Removed " + r);
+            size--;
             return;
         }
         CLL temp = head.next;
@@ -31,6 +34,7 @@ class CLL{
             if (temp.val == r){
                 prev.next = temp.next;
                 System.out.println("Removed "+ r);
+                size--;
                 break;
             }
             prev = temp;
@@ -41,6 +45,7 @@ class CLL{
             tail=prev;
             System.out.println("Removed "+ r);
         }
+        size--;
     }
     void show(){
         CLL temp = head;
@@ -66,17 +71,20 @@ class CLL{
         tail=temp;
     }
     void find(Integer f){
+        Integer c=0;
         if (head.val==f){
-            System.out.println("Found "+f);
+            System.out.println("Found "+f+" at index "+c);
             return;
         }
         CLL temp = head.next; 
         while(temp!=head){
             if(temp.val==f){
-            System.out.println("Found "+f);
+            c+=1;
+            System.out.println("Found "+f+" at index "+c);
             return;            
             }
             temp=temp.next;
+            c+=1;
         }
         System.out.println("Not Found");
     }
@@ -87,8 +95,14 @@ class CLL{
             node.next=temp;
             head=node;
             tail.next=node;
+            size++;
             return;
         }
+        if (ind>size){
+            System.out.println("Enter val less than "+size);
+            return;
+        }
+        else{
         for(Integer i=0;i<ind;i++){
             if(i==ind-1){
                 CLL ntemp=temp.next;
@@ -97,9 +111,71 @@ class CLL{
             }
             temp=temp.next;
         }
-        
     }
-}
+        size++;
+    }
+    void swap(Integer v1,Integer v2){
+        CLL n1 = null;
+        CLL n1prev = null;
+        CLL n2prev = null;
+        CLL n2 = null;
+        CLL temp = head;
+        CLL tempprev = head;
+
+        if(head.val==v1){
+            n1=temp;
+            n1prev=tail;
+            temp=temp.next;
+            while(temp!=head){
+
+                if(temp.val==v2){
+                    n2prev=tempprev;
+                    n2=temp;
+                }
+                tempprev=temp;
+                temp=temp.next;
+            }
+            CLL tempval;
+            tempval=n1.next;
+            n1.next=n2;
+            n2.next=tempval;
+            n2prev.next=n1;
+            head = n2;
+            if(tail.val == v2){
+                tail=n1;
+            }
+            return;
+        }
+        while(temp.next!=head){
+            if(temp.val==v1){
+                n1prev=tempprev;
+                n1=temp;
+            }
+            if(temp.val==v2){
+                n2prev=tempprev;
+                n2=temp;
+            }
+            tempprev=temp;
+            temp=temp.next;
+        }
+        if(temp.val==v1){
+            n1prev=tempprev;
+            n1=temp;
+        }
+        else if(temp.val==v2){
+            n2prev=tempprev;
+            n2=temp;
+        }
+        CLL tempval=null;
+        tempval=n1.next;
+        n1.next=n2.next;
+        n2.next=tempval;
+        n1prev.next=n2;
+        n2prev.next=n1;
+    }
+
+    }
+
 
 public class CircularLL {
     public static void main(String[] args) {
@@ -111,7 +187,7 @@ public class CircularLL {
         n.head = n;
         n.tail = n;
         while(true){
-            System.out.println("Choose to add, remove, reverse, find, insert or show elements: ");
+            System.out.println("Choose to add, remove, reverse, find, insert,swap or show elements: ");
             String op = sc.nextLine();
 
             if (op.equals("add")){
@@ -150,6 +226,15 @@ public class CircularLL {
             }
             if (op.equals("show")){
                 n.show();
+                continue;
+            }
+            if(op.equals("swap")){
+                System.out.println("Enter val1: ");
+                Integer v1 = sc.nextInt();
+                System.out.println("Enter val2: ");
+                v = sc.nextInt();
+                sc.nextLine();
+                n.swap(v1, v);
                 continue;
             }
             else{

@@ -1,0 +1,123 @@
+PS C:\varun\college\trustrace\code\java> javac dsa/LinkedListImp.java
+PS C:\varun\college\trustrace\code\java> java dsa/LinkedListImp      
+Enter val
+1
+Choose to add, remove, reverse, find, insert, swap or show elements:
+add
+Enter val:
+2
+Choose to add, remove, reverse, find, insert, swap or show elements:
+add
+Enter val:
+3
+Choose to add, remove, reverse, find, insert, swap or show elements:
+add
+Enter val:
+4
+Choose to add, remove, reverse, find, insert, swap or show elements:
+add
+Enter val:
+5
+Choose to add, remove, reverse, find, insert, swap or show elements:
+swap
+Enter val1:
+1
+Enter val2:
+5
+Choose to add, remove, reverse, find, insert, swap or show elements:
+show
+5
+2
+3
+4
+1
+Choose to add, remove, reverse, find, insert, swap or show elements:
+reverse
+Choose to add, remove, reverse, find, insert, swap or show elements:
+show
+1
+4
+3
+2
+5
+Choose to add, remove, reverse, find, insert, swap or show elements:
+insert
+Enter index:
+0
+Enter val:
+0
+Choose to add, remove, reverse, find, insert, swap or show elements:
+show
+0
+1
+4
+3
+2
+5
+Choose to add, remove, reverse, find, insert, swap or show elements:
+remove 
+Enter val:
+0
+Removed 0
+Choose to add, remove, reverse, find, insert, swap or show elements:
+show
+1
+4
+3
+2
+5
+Choose to add, remove, reverse, find, insert, swap or show elements:
+q
+
+//ll
+
+
+PS C:\varun\college\trustrace\code\java> javac dsa/CircularDoublyLL.java
+PS C:\varun\college\trustrace\code\java> java dsa/CircularDoublyLL      
+Enter val
+1
+Choose to add, remove, reverse, find, swap, insert or show elements:
+add
+Enter val:
+2
+Choose to add, remove, reverse, find, swap, insert or show elements:
+add
+Enter val:
+3
+Choose to add, remove, reverse, find, swap, insert or show elements:
+add
+Enter val:
+4
+Choose to add, remove, reverse, find, swap, insert or show elements:
+add
+Enter val:
+5
+Choose to add, remove, reverse, find, swap, insert or show elements:
+swap
+Enter val1:
+2
+Enter val2:
+4
+Choose to add, remove, reverse, find, swap, insert or show elements:
+reverse
+Choose to add, remove, reverse, find, swap, insert or show elements:
+show
+5
+2
+3
+4
+1
+Choose to add, remove, reverse, find, swap, insert or show elements:
+insert
+Enter index:
+0
+Enter val:
+0
+Choose to add, remove, reverse, find, swap, insert or show elements:
+find
+Enter val:
+1
+Found 1 at index 5
+Choose to add, remove, reverse, find, swap, insert or show elements:
+q
+//cdll

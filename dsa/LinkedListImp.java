@@ -60,17 +60,20 @@ class LL{
         tail=temp;
     }
     void find(Integer f){
+        Integer c=0;
         if (head.val==f){
-            System.out.println("Found "+f);
+            System.out.println("Found "+f+" at index "+c);
             return;
         }
         LL temp = head.next; 
         while(temp!=null){
             if(temp.val==f){
-            System.out.println("Found "+f);
+                c+=1;
+            System.out.println("Found "+f+" at index "+c);
             return;            
             }
             temp=temp.next;
+            c+=1;
         }
         System.out.println("Not Found");
     }
@@ -87,6 +90,7 @@ class LL{
             System.out.println("Enter val less than "+size);
             return;
         }
+        else{
         for(Integer i=0;i<ind;i++){
             if(i==ind-1){
                 LL ntemp=temp.next;
@@ -95,9 +99,57 @@ class LL{
             }
             temp=temp.next;
         }
+        size++;
+    }
+    }
+    void swap(Integer v1,Integer v2){
+        LL n1 = null;
+        LL n1prev = null;
+        LL n2prev = null;
+        LL n2 = null;
+        LL temp = head;
+        LL tempprev = null;
 
+        if(head.val==v1){
+            n1=temp;
+            while(temp!=null){
 
-        
+                if(temp.val==v2){
+                    n2prev=tempprev;
+                    n2=temp;
+                }
+                tempprev=temp;
+                temp=temp.next;
+            }
+            LL tempval=null;
+            tempval=n1.next;
+            n1.next=n2.next;
+            n2.next=tempval;
+            n2prev.next=n1;
+            head = n2;
+            if(tail.val == v2){
+                tail=n1;
+            }
+            return;
+        }
+        while(temp!=null){
+            if(temp.val==v1){
+                n1prev=tempprev;
+                n1=temp;
+            }
+            if(temp.val==v2){
+                n2prev=tempprev;
+                n2=temp;
+            }
+            tempprev=temp;
+            temp=temp.next;
+        }
+        LL tempval=null;
+        tempval=n1.next;
+        n1.next=n2.next;
+        n2.next=tempval;
+        n1prev.next=n2;
+        n2prev.next=n1;
     }
 }
 // 1 2 3 4 5
@@ -111,7 +163,7 @@ public class LinkedListImp {
         n.head = n;
         n.tail = n;
         while(true){
-            System.out.println("Choose to add, remove, reverse, find, insert or show elements: ");
+            System.out.println("Choose to add, remove, reverse, find, insert, swap or show elements: ");
             String op = sc.nextLine();
 
             if (op.equals("add")){
@@ -150,6 +202,15 @@ public class LinkedListImp {
             }
             if (op.equals("show")){
                 n.show();
+                continue;
+            }
+            if(op.equals("swap")){
+                System.out.println("Enter val1: ");
+                Integer v1 = sc.nextInt();
+                System.out.println("Enter val2: ");
+                v = sc.nextInt();
+                sc.nextLine();
+                n.swap(v1, v);
                 continue;
             }
             else{

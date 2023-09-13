@@ -7,6 +7,7 @@ class DLL{
     DLL prev;
     static DLL head;
     static DLL tail;
+    static Integer size=1;
     DLL(Integer v){
         this.val = v;
         this.next = null;
@@ -18,12 +19,14 @@ class DLL{
         node.prev = tail;
         tail.next = node;
         tail = node;
+        size++;
     }
     void remove(Integer r){
         if(head.val == r){
             head = head.next;
             head.prev=null;
             System.out.println("Removed " + r);
+            size--;
             return;
         }
         DLL temp = head.next;
@@ -32,6 +35,7 @@ class DLL{
                 temp.prev.next = temp.next;
                 temp.next.prev=temp.prev;
                 System.out.println("Removed "+ r);
+                size--;
                 return;
             }
             temp=temp.next;
@@ -40,6 +44,7 @@ class DLL{
             temp.prev.next = temp.next;
             tail=temp.prev;
             System.out.println("Removed "+ r);
+            size--;
             return;
         }
         System.out.println("Not Found");
@@ -66,17 +71,20 @@ class DLL{
         tail=temp1;
     }
     void find(Integer f){
+        Integer c=0;
         if (head.val==f){
-            System.out.println("Found "+f);
+            System.out.println("Found "+f +" at index "+c);
             return;
         }
         DLL temp = head.next; 
         while(temp!=null){
             if(temp.val==f){
-            System.out.println("Found "+f);
+            c+=1;
+            System.out.println("Found "+f+" at index "+c);
             return;            
             }
             temp=temp.next;
+            c+=1;
         }
         System.out.println("Not Found");
     }
@@ -87,8 +95,14 @@ class DLL{
             node.next=temp;
             temp.prev=node;
             head=node;
+            size++;
             return;
         }
+        if (ind>size){
+            System.out.println("Enter val less than "+size);
+            return;
+        }
+        else{
         for(Integer i=0;i<ind;i++){
             if(i==ind-1){
                 DLL ntemp=temp.next;
@@ -101,6 +115,10 @@ class DLL{
             }
             temp=temp.next;
         }
+        }
+        size++;   
+    }
+    void swap(Integer v1,Integer v2){
         
     }
 }
@@ -154,6 +172,15 @@ public class DoublyLL {
             }
             if (op.equals("show")){
                 n.show();
+                continue;
+            }
+            if(op.equals("swap")){
+                System.out.println("Enter val1: ");
+                Integer v1 = sc.nextInt();
+                System.out.println("Enter val2: ");
+                v = sc.nextInt();
+                sc.nextLine();
+                n.swap(v1, v);
                 continue;
             }
             else{

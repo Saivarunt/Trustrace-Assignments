@@ -7,6 +7,7 @@ class CDLL{
     CDLL prev;
     static CDLL head;
     static CDLL tail;
+    static Integer size=1;
     CDLL(Integer v){
         this.val = v;
         this.next = null;
@@ -18,6 +19,7 @@ class CDLL{
         node.prev = tail;
         tail.next = node;
         tail = node;
+        size++;
     }
     void remove(Integer r){
         if(head.val == r){
@@ -26,7 +28,7 @@ class CDLL{
             tail.next=head;
             System.out.println("Removed " + r);
             // System.out.println("head: "+head.val+"tail: "+tail.val);
-
+            size--;
             return;
         }
         CDLL temp = head.next;
@@ -36,6 +38,7 @@ class CDLL{
                 temp.next.prev=temp.prev;
                 System.out.println("Removed "+ r);
                 // System.out.println("head: "+head.val+"tail: "+tail.val+ "head prev"+head.prev.val);
+                size--;
                 return;
             }
             temp=temp.next;
@@ -46,6 +49,7 @@ class CDLL{
             head.prev=tail;
             System.out.println("Removed "+ r);
             // System.out.println("head: "+head.val+"tail: "+tail.val+"head prev"+head.prev.val);
+            size--;
             return;
         }
         System.out.println("Not Found");
@@ -65,7 +69,6 @@ class CDLL{
         CDLL temp=head;
         CDLL nxt=temp.next;
         while(temp.next!=head){
-            System.out.println("inloop");
             temp.next = temp.prev;
             temp.prev = nxt;
             temp=temp.prev;
@@ -76,26 +79,29 @@ class CDLL{
             temp.prev = nxt;
             temp=temp.prev;
         }
-        System.out.println("head: "+head.val+"tail: "+tail.val);
+        // System.out.println("head: "+head.val+"tail: "+tail.val);
         head = ttail;
         tail=temp1;
         tail.next=head;
         head.prev=tail;
-        System.out.println("head: "+head.val+"next"+head.next.val+"tnext"+tail.next.val+"tail: "+tail.val);
+        // System.out.println("head: "+head.val+"next"+head.next.val+"tnext"+tail.next.val+"tail: "+tail.val);
 
     }
     void find(Integer f){
+        Integer c=0;
         if (head.val==f){
-            System.out.println("Found "+f);
+            System.out.println("Found "+f+" at index "+c);
             return;
         }
         CDLL temp = head.next; 
         while(temp!=head){
             if(temp.val==f){
-            System.out.println("Found "+f);
+            c+=1;
+            System.out.println("Found "+f+" at index "+c);
             return;            
             }
             temp=temp.next;
+            c+=1;
         }
         System.out.println("Not Found");
     }
@@ -108,8 +114,14 @@ class CDLL{
             tail.next=node;
             temp.prev=node;
             node.prev=tail;
+            size++;
             return;
         }
+        if (ind>size){
+            System.out.println("Enter val less than "+size);
+            return;
+        }
+        else{
         for(Integer i=0;i<ind;i++){
             if(i==ind-1){
                 CDLL ntemp=temp.next;
@@ -122,6 +134,8 @@ class CDLL{
             }
             temp=temp.next;
         }
+    }
+        size++;
         // tail=tail.next;
         // head.prev=tail;
         
