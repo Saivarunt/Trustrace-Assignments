@@ -1,29 +1,33 @@
+
 package dsa;
-import java.util.*;
-class LL{
+
+import java.util.Scanner;
+
+class CLL{
     Integer val;
-    LL next;
-    static LL head;
-    static LL tail;
-    LL(Integer v){
+    CLL next;
+    static CLL head;
+    static CLL tail;
+    CLL(Integer v){
         this.val = v;
         this.next = null;
     }
     void add(Integer num){
-        LL node = new LL(num);
-        node.next=null;
+        CLL node = new CLL(num);
+        node.next=head;
         tail.next = node;
         tail = node;
     }
     void remove(Integer r){
         if(head.val == r){
             head = head.next;
+            tail.next=head;
             System.out.println("Removed " + r);
             return;
         }
-        LL temp = head.next;
-        LL prev = head;
-        while (temp!=null){
+        CLL temp = head.next;
+        CLL prev = head;
+        while (temp.next!=head){
             if (temp.val == r){
                 prev.next = temp.next;
                 System.out.println("Removed "+ r);
@@ -32,20 +36,26 @@ class LL{
             prev = temp;
             temp=temp.next;
         }
+        if(temp.val==r){
+            prev.next = temp.next;
+            tail=prev;
+            System.out.println("Removed "+ r);
+        }
     }
     void show(){
-        LL temp = head;
-        while(temp!=null){
+        CLL temp = head;
+        while(temp.next!=head){
             System.out.println(temp.val);
             temp = temp.next;
         }
+        System.out.println(temp.val);
     }
     void reverse(){
-        LL prev = null;
-        LL temp = head;
-        LL c = head;
-        LL nt=c.next;
-        while(nt!=null){
+        CLL prev = tail;
+        CLL temp = head;
+        CLL c = head;
+        CLL nt=c.next;
+        while(nt!=head){
             c.next=prev;
             prev = c;
             c=nt;
@@ -60,8 +70,8 @@ class LL{
             System.out.println("Found "+f);
             return;
         }
-        LL temp = head.next; 
-        while(temp!=null){
+        CLL temp = head.next; 
+        while(temp!=head){
             if(temp.val==f){
             System.out.println("Found "+f);
             return;            
@@ -71,16 +81,17 @@ class LL{
         System.out.println("Not Found");
     }
     void insert(Integer ind, Integer v){
-        LL node = new LL(v);
-        LL temp = head;
+        CLL node = new CLL(v);
+        CLL temp = head;
         if(ind==0){
             node.next=temp;
             head=node;
+            tail.next=node;
             return;
         }
         for(Integer i=0;i<ind;i++){
             if(i==ind-1){
-                LL ntemp=temp.next;
+                CLL ntemp=temp.next;
                 temp.next=node;
                 node.next=ntemp;
             }
@@ -89,14 +100,14 @@ class LL{
         
     }
 }
-// 1 2 3 4 5
-public class LinkedListImp {
+
+public class CircularLL {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter val");
         Integer v = sc.nextInt();
         sc.nextLine();
-        LL n = new LL(v);
+        CLL n = new CLL(v);
         n.head = n;
         n.tail = n;
         while(true){
@@ -108,21 +119,25 @@ public class LinkedListImp {
                 v = sc.nextInt();
                 sc.nextLine();
                 n.add(v);
+                continue;
             }
             if (op.equals("remove")){
                 System.out.println("Enter val: ");
                 v = sc.nextInt();
                 sc.nextLine();
                 n.remove(v);
+                continue;
             }
             if (op.equals("reverse")){
                 n.reverse();
+                continue;
             }
             if (op.equals("find")){
                 System.out.println("Enter val: ");
                 v = sc.nextInt();
                 sc.nextLine();
                 n.find(v);
+                continue;
             }
             if (op.equals("insert")){
                 System.out.println("Enter index: ");
@@ -131,17 +146,18 @@ public class LinkedListImp {
                 v = sc.nextInt();
                 sc.nextLine();
                 n.insert(indx, v);
+                continue;
             }
             if (op.equals("show")){
                 n.show();
+                continue;
             }
             else{
                 break;
             }
         }
-        // LL n = new LL(1);
-        // n.head = n;
-        // n.tail = n;
+
+
         // n.add(2);
         // n.add(3);
         // n.add(4);
