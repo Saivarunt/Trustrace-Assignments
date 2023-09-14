@@ -15,3 +15,9 @@ Circular Linked List
 
 Doubly Circular Linked List
 ![Alt text](CDLLoutput.png)
+
+Stack
+![Alt text](Stack.png)
+
+Queue
+![Alt text](Queue.png)

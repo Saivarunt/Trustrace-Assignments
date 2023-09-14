@@ -219,3 +219,103 @@ show
 Choose to add, remove, reverse, find, insert, swap or show elements:
 q
 //dll
+
+//StackImp
+PS C:\varun\college\trustrace\code\java> javac dsa/StackImp.java
+PS C:\varun\college\trustrace\code\java> java dsa/StackImp      
+Enter stack size
+4
+Choose to push, pop, peek, or show elements: 
+push
+Enter val:
+1
+pushed
+Choose to push, pop, peek, or show elements:
+push
+Enter val:
+2
+pushed
+Choose to push, pop, peek, or show elements:
+push
+Enter val:
+3
+pushed
+Choose to push, pop, peek, or show elements:
+pop
+3
+Choose to push, pop, peek, or show elements:
+show
+2
+1
+Choose to push, pop, peek, or show elements:
+peek
+2
+Choose to push, pop, peek, or show elements:
+push
+Enter val:
+4
+pushed
+Choose to push, pop, peek, or show elements:
+show
+4
+2
+1
+Choose to push, pop, peek, or show elements:
+q
+
+//queue
+PS C:\varun\college\trustrace\code\java> javac dsa/QueueImp.java
+PS C:\varun\college\trustrace\code\java> java dsa/QueueImp      
+Enter queue size
+4
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+enqueue
+Enter val:
+1
+enqueue
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+enqueue
+Enter val:
+2
+enqueue
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+enqueue
+Enter val:
+3
+enqueue
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+dequeue
+dequeue
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+show
+2
+3
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+find
+Enter val:
+1
+Not found
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+find
+Enter val:
+2
+Found in index 0
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+addBack
+Enter val:
+4
+add back
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+show
+4
+2
+3
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+removeFront
+removeFront
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+show
+2
+3
+Choose to enqueue, dequeue, addBack, removeFront, find or show elements:
+q
