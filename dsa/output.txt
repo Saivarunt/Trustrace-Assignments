@@ -186,3 +186,36 @@ Found 4 at index 2
 Choose to add, remove, reverse, find, insert,swap or show elements:
 q
 //cll
+
+PS C:\varun\college\trustrace\code\java> javac dsa/DoublyLL.java
+PS C:\varun\college\trustrace\code\java> java dsa/DoublyLL      
+Enter val
+1
+Choose to add, remove, reverse, find, insert, swap or show elements:
+add
+Enter val:
+2
+Choose to add, remove, reverse, find, insert, swap or show elements:
+add
+Enter val:
+3
+Choose to add, remove, reverse, find, insert, swap or show elements:
+add
+Enter val:
+4
+Choose to add, remove, reverse, find, insert, swap or show elements:
+Found 2 at index 2
+Choose to add, remove, reverse, find, insert, swap or show elements:
+insert
+Enter index:
+0
+Enter val:
+show
+0
+4
+3
+2
+5
+Choose to add, remove, reverse, find, insert, swap or show elements:
+q
+//dll
