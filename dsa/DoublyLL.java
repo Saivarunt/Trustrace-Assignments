@@ -138,6 +138,25 @@ class DLL{
             // System.out.println("hv: "+head.val+" hn:"+head.next.next.val +"tv:"+tail.val+" tp:"+tail.prev.val);
             return;
         }
+        if(tail.val==v1 && head.val==v2){
+            DLL temp=tail;
+            DLL ttail=head;
+            // System.out.println("hv: "+head.val+" hn:"+head.next.next.val +"tv:"+tail.val+" tp:"+tail.prev.val);
+
+            ttail.next=temp.next;
+            temp.next.prev=ttail;
+            
+            temp.prev=ttail.prev;
+            ttail.prev.next=temp;
+
+            ttail.prev=null;
+            temp.next=null;
+            
+            tail = ttail;
+            head=temp;
+            // System.out.println("hv: "+head.val+" hn:"+head.next.next.val +"tv:"+tail.val+" tp:"+tail.prev.val);
+            return;
+        }
         DLL node=head;
         DLL n1=null,n2=null;
         while(node.next!=null){
@@ -157,6 +176,14 @@ class DLL{
             n2.prev=n1.prev;
             n2.next=n1;
             n1.prev=n2;
+            }
+            else if(n2.next==n1){
+            n1.next.prev=n2;
+            n2.prev.next=n1;
+            n2.next=n1.next;
+            n1.prev=n2.prev;
+            n1.next=n2;
+            n2.prev=n1;
             }
             else{
             n1.prev.next=n2;

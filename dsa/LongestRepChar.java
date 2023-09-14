@@ -39,6 +39,40 @@ class Imp{
                         mainmax=max;
             }
         }
+        k=kcopy;
+        j=s1.length()-1;
+        i=j;
+        max=0;
+        while(i>-1 && j>-1){
+            if(s1.charAt(i)!=s1.charAt(j)){
+                if(k!=0){
+                    k--;
+                    max++;
+                    if(f==1){
+                        itemp=j;
+                        f--;
+                    }
+                }
+                else{
+                    i=itemp;
+                    j=i;
+                    k=kcopy;
+                    f=1;
+                    if(max>mainmax){
+                        mainmax=max;
+                    }
+                    max=0;
+                    continue;
+                }
+            }
+            else{
+                max++;
+            }
+            j--;
+            if(max>mainmax){
+                        mainmax=max;
+            }
+        }
         System.out.println(mainmax);
     }
 }
