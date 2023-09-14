@@ -9,9 +9,30 @@ class Imp{
         Integer itemp=0;
         Integer kcopy=k;
         Integer f=1;
+
         while(i<s1.length() && j<s1.length()){
-            if(s1.charAt(i)!=s1.charAt(j)){
-                if(k!=0){
+            if(s1.charAt(i)==s1.charAt(j)){
+                max++;
+            }
+            else{
+                if (k==0 && itemp!=0){
+                    i=itemp;
+                    j=i;
+                    k=kcopy;
+                    if(max>mainmax){
+                        mainmax=max;
+                    }
+                    f=1;
+                    max=0;
+                }
+                else if(k==0){
+                    i=j;
+                    k=kcopy;
+                    if(max>mainmax){
+                        mainmax=max;
+                    }
+                }
+                else{
                     k--;
                     max++;
                     if(f==1){
@@ -19,20 +40,6 @@ class Imp{
                         f--;
                     }
                 }
-                else{
-                    i=itemp;
-                    j=i;
-                    k=kcopy;
-                    f=1;
-                    if(max>mainmax){
-                        mainmax=max;
-                    }
-                    max=0;
-                    continue;
-                }
-            }
-            else{
-                max++;
             }
             j++;
             if(max>mainmax){
@@ -42,10 +49,30 @@ class Imp{
         k=kcopy;
         j=s1.length()-1;
         i=j;
-        max=0;
+        max=0;        
         while(i>-1 && j>-1){
-            if(s1.charAt(i)!=s1.charAt(j)){
-                if(k!=0){
+            if(s1.charAt(i)==s1.charAt(j)){
+                max++;
+            }
+            else{
+                if (k==0 && itemp!=0){
+                    i=itemp;
+                    j=i;
+                    k=kcopy;
+                    if(max>mainmax){
+                        mainmax=max;
+                    }
+                    f=1;
+                    max=0;
+                }
+                else if(k==0){
+                    i=j;
+                    k=kcopy;
+                    if(max>mainmax){
+                        mainmax=max;
+                    }
+                }
+                else{
                     k--;
                     max++;
                     if(f==1){
@@ -53,20 +80,6 @@ class Imp{
                         f--;
                     }
                 }
-                else{
-                    i=itemp;
-                    j=i;
-                    k=kcopy;
-                    f=1;
-                    if(max>mainmax){
-                        mainmax=max;
-                    }
-                    max=0;
-                    continue;
-                }
-            }
-            else{
-                max++;
             }
             j--;
             if(max>mainmax){
