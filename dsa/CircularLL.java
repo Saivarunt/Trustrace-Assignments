@@ -116,36 +116,12 @@ class CLL{
     }
     void swap(Integer v1,Integer v2){
         CLL n1 = null;
-        CLL n1prev = null;
-        CLL n2prev = null;
+        CLL n1prev = tail;
+        CLL n2prev = tail;
         CLL n2 = null;
         CLL temp = head;
         CLL tempprev = head;
 
-        if(head.val==v1){
-            n1=temp;
-            n1prev=tail;
-            temp=temp.next;
-            while(temp!=head){
-
-                if(temp.val==v2){
-                    n2prev=tempprev;
-                    n2=temp;
-                }
-                tempprev=temp;
-                temp=temp.next;
-            }
-            CLL tempval;
-            tempval=n1.next;
-            n1.next=n2;
-            n2.next=tempval;
-            n2prev.next=n1;
-            head = n2;
-            if(tail.val == v2){
-                tail=n1;
-            }
-            return;
-        }
         while(temp.next!=head){
             if(temp.val==v1){
                 n1prev=tempprev;
@@ -166,12 +142,40 @@ class CLL{
             n2prev=tempprev;
             n2=temp;
         }
+
+        if(n1==head){
+            head=n2;
+        }
+        else if(n2==head){
+            head=n1;
+        }
+
+        if(n1==tail){
+            tail=n2;
+        }
+        else if(n2==tail){
+            tail=n1;
+        }
+
+        
+        if(n1.next==n2){
+            n1prev.next=n2;
+            n1.next=n2.next;
+            n2.next=n1;
+        }
+        else if(n2.next==n1){
+            n2prev.next=n1;
+            n2.next=n1.next;
+            n1.next=n2;
+        }
+        else{
         CLL tempval=null;
         tempval=n1.next;
         n1.next=n2.next;
         n2.next=tempval;
         n1prev.next=n2;
         n2prev.next=n1;
+        }
     }
 
     }
