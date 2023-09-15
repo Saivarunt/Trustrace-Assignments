@@ -1,4 +1,6 @@
 package dsa;
+import java.util.*;
+
 class Tree{
     Integer val;
     Tree left;
@@ -59,6 +61,22 @@ class Tree{
         postOrder(current.right);
         System.out.print(current.val+" ");
     }
+    void bfs(Tree root){
+        System.out.print(root.val+" ");
+        Queue<Tree> q = new LinkedList<Tree>();
+        q.add(root.left);
+        q.add(root.right);
+        while(q.size()>0){
+            Tree popped = q.poll();
+            System.out.print(popped.val+" ");
+            if(popped.left !=null){
+                q.add(popped.left);
+            }
+            if(popped.right != null){
+                q.add(popped.right);
+            }
+        }
+    }
 }
 public class TreesImp {
     public static void main(String[] args) {
@@ -69,12 +87,16 @@ public class TreesImp {
         t.add(2);
         t.add(7);
         t.add(11);
-        t.add(15);
-        t.inOrder(Tree.root);
-        System.out.println();
-        t.preOrder(Tree.root);
-        System.out.println();
-        t.postOrder(Tree.root);
-        System.out.println();
+        t.add(16);
+        t.add(6);
+        t.add(8);
+        // t.inOrder(Tree.root);
+        // System.out.println();
+        // t.preOrder(Tree.root);
+        // System.out.println();
+        // t.postOrder(Tree.root);
+        // System.out.println();
+        t.bfs(Tree.root);
+
     }
 }
