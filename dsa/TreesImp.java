@@ -77,6 +77,21 @@ class Tree{
             }
         }
     }
+    void find(Tree r,Integer val,Integer ind){
+        if(r.val==val){
+            System.out.print(val+" ");
+            System.out.println();
+            System.out.println("Found at :"+ind);
+        }
+        else if(val<r.val){    
+            System.out.print(r.val+" ");        
+            find(r.left, val, ind+1);
+        }
+        else{
+            System.out.print(r.val+" ");        
+            find(r.right, val, ind+1);
+        }
+    }
 }
 public class TreesImp {
     public static void main(String[] args) {
@@ -92,12 +107,17 @@ public class TreesImp {
         t.add(8);
         System.out.println("In-order");
         t.inOrder(Tree.root);
+        System.out.println();
         System.out.println("PreOrder");
         t.preOrder(Tree.root);
+        System.out.println();
         System.out.println("PostOrder");
         t.postOrder(Tree.root);
+        System.out.println();
         System.out.println("BFS");
         t.bfs(Tree.root);
-
+        System.out.println();
+        System.out.println("Find:");
+        t.find(t, 8, 0);
     }
 }
