@@ -55,6 +55,13 @@ class Tree{
             dfs(node);
         }
     }
+    Integer height(Tree r){
+        Integer maxh=0;
+        for(Tree node : r.childNodes){
+            maxh=Math.max(maxh,height(node));
+        }
+        return maxh+1;
+    }
 }
 public class NArrTree {
     public static void main(String[] args) {
@@ -98,5 +105,7 @@ public class NArrTree {
         System.out.println();
         System.out.println("DFS");
         t.dfs(Tree.root);
+        System.out.println();
+        System.out.println("Height: "+t.height(Tree.root));
     }
 }
