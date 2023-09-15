@@ -90,12 +90,13 @@ public class TreesImp {
         t.add(16);
         t.add(6);
         t.add(8);
-        // t.inOrder(Tree.root);
-        // System.out.println();
-        // t.preOrder(Tree.root);
-        // System.out.println();
-        // t.postOrder(Tree.root);
-        // System.out.println();
+        System.out.println("In-order");
+        t.inOrder(Tree.root);
+        System.out.println("PreOrder");
+        t.preOrder(Tree.root);
+        System.out.println("PostOrder");
+        t.postOrder(Tree.root);
+        System.out.println("BFS");
         t.bfs(Tree.root);
 
     }
