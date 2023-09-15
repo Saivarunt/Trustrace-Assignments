@@ -38,12 +38,21 @@ class Tree{
         }
         System.out.print(r.val+" ");
     }
-    void bfs(Tree root){
-        System.out.print(root.val+" ");
+    void bfs(Tree r){
+        System.out.print(r.val+" ");
         Integer ind=0;
         while(ind<mainQueue.size()){
             System.out.print(mainQueue.get(ind).val+" ");
             ind++;
+        }
+    }
+    void dfs(Tree r){
+        if(r==root){
+            System.out.print(r.val+" ");
+        }
+        for(Tree node : r.childNodes){
+            System.out.print(node.val+" ");
+            dfs(node);
         }
     }
 }
@@ -86,5 +95,8 @@ public class NArrTree {
         System.out.println();
         System.out.println("BFS");
         t.bfs(Tree.root);
+        System.out.println();
+        System.out.println("DFS");
+        t.dfs(Tree.root);
     }
 }
