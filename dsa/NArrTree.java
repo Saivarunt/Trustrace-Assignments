@@ -12,19 +12,31 @@ class Tree{
         parent=null;
         this.childCount=cc;
     }
-    Tree traverseToAdd(Tree current, Tree element,Integer index){
-        if(current.childNodes.size()<childCount){
+    Tree traverseToAdd(Tree current, Tree element,Integer index) throws Exception{
+        if(current.childNodes.size()<childCount && current.childCount!=0){
             current.childNodes.add(element);
             return current;
         }
         else{
-            return traverseToAdd(mainQueue.get(index), element,index+1);
+            try{
+                return traverseToAdd(mainQueue.get(index), element,index+1);
+            }
+            catch(Exception e){
+                throw new Exception("No more space left in tree to add");
+            }
         }
     }
-    void addVal(Integer v, Integer cc){
+    String addVal(Integer v, Integer cc){
         Tree newval = new Tree(v,cc);
-        newval.parent = traverseToAdd(root, newval,0);
-        mainQueue.add(newval);
+        try{
+            newval.parent = traverseToAdd(root, newval,0);
+            mainQueue.add(newval);
+            return "success";
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return "failure";
+        }
     }
     void preOrder(Tree r){
         System.out.print(r.val+" ");
@@ -62,6 +74,36 @@ class Tree{
         }
         return maxh+1;
     }
+    void deleteNodeAsChild(Tree r,Integer val){
+        for(Tree node : r.childNodes){
+            if(node.val==val){
+                // node.val=null;
+                // System.out.println("found child node");
+                r.childNodes.remove(node);
+                // System.out.println(r.childNodes);
+                return;
+            }
+            deleteNodeAsChild(node, val);
+        }
+    }
+    void delete(Tree r,Integer value){
+        if (root.val==value){
+            root.val=-1;
+            return;
+        }
+        for(Tree node:root.mainQueue){
+            if(node.val==value){
+                // node.val=null;
+                // System.out.println("found node");
+                root.mainQueue.remove(node);
+                // System.out.println(root.mainQueue);
+                deleteNodeAsChild(root,value);
+                return;
+            }
+        }
+        System.out.println("Not Found");
+
+    }
 }
 public class NArrTree {
     public static void main(String[] args) {
@@ -86,14 +128,20 @@ public class NArrTree {
                 System.out.println("Enter number of children per node");
                 Integer nc = sc.nextInt();
                 sc.nextLine();
-                t.addVal(value,nc); 
-
-                continue;
+                if(t.addVal(value,nc).equals("success")){ 
+                    continue;
+                }
+                else{
+                    break;
+                }
             }
             else{
                 break;
             }
         }
+        System.out.println("Deleting node");
+        t.delete(Tree.root,5);
+
         System.out.println("PreOrder");
         t.preOrder(t);
         System.out.println();
