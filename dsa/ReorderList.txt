@@ -10,25 +10,35 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
-        ListNode temp = head;
-        ListNode n=null;
-        ListNode prev=null;
-        while(temp!=null){
-           if (temp.next==null){
-               prev.next=null;
-               n=temp;
-               break;
-           }
-           prev=temp;
-           temp=temp.next;
+
+        if(head==null||head.next==null){
+            return;
         }
-        ListNode temp2 = head.next;
-        head.next=n;
-        head.next.next=temp2;
-        temp=head;
-        while(temp!=null){
-            System.out.println(" "+temp.val);
-            temp=temp.next;
+
+        ListNode n1=head;
+        ListNode n2=head;
+        while(n2.next!=null && n2.next.next!=null){
+            n1=n1.next;
+            n2=n2.next.next;
+        }
+
+        ListNode mid = n1;
+        ListNode midcur = n1.next;
+        while(midcur.next!=null){
+            ListNode current = midcur.next;
+            midcur.next=current.next;
+            current.next=mid.next;
+            mid.next=current;
+        }
+
+        n1=head;
+        n2=mid.next;
+        while(n1!=mid){
+            mid.next=n2.next;
+            n2.next=n1.next;
+            n1.next=n2;
+            n1=n2.next;
+            n2=mid.next;
         }
     }
 }
