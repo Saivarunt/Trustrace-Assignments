@@ -21,3 +21,9 @@ Stack
 
 Queue
 ![Alt text](Queue.png)
+
+NArrayTree
+![Alt text](NArrayTreeoutput.png)
+
+Binary Tree
+![Alt text](BinaryTreeoutput.png)

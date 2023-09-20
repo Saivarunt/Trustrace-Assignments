@@ -74,6 +74,36 @@ class Tree{
         }
         return maxh+1;
     }
+    // void deleteNodeAsChild(Tree r,Integer val){
+    //     for(Tree node : r.childNodes){
+    //         if(node.val==val){
+    //             // node.val=null;
+    //             // System.out.println("found child node");
+    //             r.childNodes.remove(node);
+    //             // System.out.println(r.childNodes);
+    //             return;
+    //         }
+    //         deleteNodeAsChild(node, val);
+    //     }
+    // }
+    // void delete(Tree r,Integer value){
+    //     if (root.val==value){
+    //         root.val=-1;
+    //         return;
+    //     }
+    //     for(Tree node:root.mainQueue){
+    //         if(node.val==value){
+    //             // node.val=null;
+    //             // System.out.println("found node");
+    //             root.mainQueue.remove(node);
+    //             // System.out.println(root.mainQueue);
+    //             deleteNodeAsChild(root,value);
+    //             return;
+    //         }
+    //     }
+    //     System.out.println("Not Found");
+
+    // }
     void deleteNodeAsChild(Tree r,Integer val){
         for(Tree node : r.childNodes){
             if(node.val==val){
@@ -88,18 +118,75 @@ class Tree{
     }
     void delete(Tree r,Integer value){
         if (root.val==value){
-            root.val=-1;
+            System.out.println("Child Nodes");
+            for(Tree node:root.childNodes){
+                System.out.println(node.val);
+            }
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter Index of val :");
+            Integer v = sc.nextInt();
+            sc.nextLine();
+
+            Tree nextroot=root.childNodes.get(v);
+
+            mainQueue.remove(nextroot);
+            for(Tree child:nextroot.childNodes){
+                root.childNodes.add(child);
+            }
+            root.childNodes.remove(nextroot);
+            List<Tree> childcopy = root.childNodes;
+            Tree.root=nextroot;
+            root.childNodes=childcopy;
             return;
         }
+        Integer ind=0;
         for(Tree node:root.mainQueue){
             if(node.val==value){
                 // node.val=null;
                 // System.out.println("found node");
-                root.mainQueue.remove(node);
+                if(node.childCount!=0){
+                    System.out.println("Child Nodes");
+                    for(Tree cnode:node.childNodes){
+                        System.out.println(cnode.val);
+                    }
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Enter Index of val :");
+                    Integer v = sc.nextInt();
+                    sc.nextLine();
+
+                    Tree nextnode=node.childNodes.get(v);
+                    mainQueue.remove(nextnode);
+                    mainQueue.remove(node);
+
+                    for(Tree child:nextnode.childNodes){
+                        node.childNodes.add(child);
+                    }
+                    
+                    Integer tempind=0;
+                    for(Tree parentrem:node.parent.childNodes){
+                        if(parentrem==node){
+                            node.parent.childNodes.remove(parentrem);
+                            break;
+                        }
+                        tempind+=1;
+                    }
+                    node.parent.childNodes.add(tempind, nextnode);
+
+                    mainQueue.add(ind,nextnode);
+                    node.childNodes.remove(nextnode);
+                    List<Tree> childcopy = node.childNodes;
+                    node=nextnode;
+                    node.childNodes=childcopy;
+                }
+                else{
+                    root.mainQueue.remove(node);
+                    deleteNodeAsChild(root,value);
+                }
+
                 // System.out.println(root.mainQueue);
-                deleteNodeAsChild(root,value);
                 return;
             }
+            ind+=1;
         }
         System.out.println("Not Found");
 
@@ -140,13 +227,13 @@ public class NArrTree {
             }
         }
         System.out.println("Deleting node");
-        t.delete(Tree.root,5);
+        t.delete(Tree.root,2);
 
         System.out.println("PreOrder");
-        t.preOrder(t);
+        t.preOrder(Tree.root);
         System.out.println();
         System.out.println("PostOrder");
-        t.postOrder(t);
+        t.postOrder(Tree.root);
         System.out.println();
         System.out.println("BFS");
         t.bfs(Tree.root);
