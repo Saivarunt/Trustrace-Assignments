@@ -27,3 +27,7 @@ NArrayTree
 
 Binary Tree
 ![Alt text](BinaryTreeoutput.png)
+
+Binary search
+![Alt text](BinarySearchoutput.png)
+![Alt text](BinarySearchoutput1.png)
