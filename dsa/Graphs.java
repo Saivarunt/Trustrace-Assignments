@@ -55,6 +55,32 @@ class Graph{
             visnode.visited=false;
         }
     }
+    void dfs(Graph node){
+        if(node.visited==false){
+            System.out.print(node.val+" ");
+            node.visited=true;
+        }
+
+        Stack<Graph> g= new Stack<>();
+        g.addAll(node.nextNodes);
+
+        while(g.size()>0){
+            Graph popped = g.pop();
+            if(popped.visited==false){
+                System.out.print(popped.val+" ");
+                popped.visited=true;
+                Integer ind=0;
+                while(popped.nextNodes.size()>0 && ind<popped.nextNodes.size()){
+                    g.push(popped.nextNodes.get(ind));
+                    ind+=1;
+                }
+            }
+        }
+
+        for(Graph visnode:Graph.mainList){
+            visnode.visited=false;
+        }
+    }
 }
 public class Graphs {
     public static void main(String[] args) {
@@ -94,8 +120,8 @@ public class Graphs {
                     }
                     else{
                         System.out.println("Parent not in Graph enter valid parent");
+                        break;
                     }
-                    break;
                 }
                 obj.addNode(v, parents);
                 continue;
@@ -110,5 +136,7 @@ public class Graphs {
         // }
         System.out.println();
         obj.bfs(Graph.mainList.get(0));
+        System.out.println();
+        obj.dfs(Graph.mainList.get(0));
     }
 }
