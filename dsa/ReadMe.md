@@ -31,3 +31,9 @@ Binary Tree
 Binary search
 ![Alt text](BinarySearchoutput.png)
 ![Alt text](BinarySearchoutput1.png)
+
+BFS,DFS-Graph
+![Alt text](BFSDFS-Graphoutput.png)
+
+Selection And Bubble sort
+![Alt text](Selection-Bubble-Cocktailoutput.png)
