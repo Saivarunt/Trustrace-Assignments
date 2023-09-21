@@ -134,9 +134,9 @@ public class Graphs {
         // for(Graph mainnodes: Graph.mainList){
         //     System.out.print(mainnodes.val+" ");
         // }
-        System.out.println();
+        System.out.println("BFS:");
         obj.bfs(Graph.mainList.get(0));
-        System.out.println();
+        System.out.println("DFS:");
         obj.dfs(Graph.mainList.get(0));
     }
 }
