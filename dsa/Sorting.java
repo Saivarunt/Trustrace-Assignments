@@ -50,6 +50,9 @@ class SortingTypes{
                 }
             }
             e--;
+            if(swap==false){
+                break;
+            }
             for(Integer j=e-1;j>=b;j--){
                 if(arr[j]>arr[j+1]){
                     Integer temp=arr[j];
