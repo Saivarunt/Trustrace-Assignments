@@ -98,6 +98,44 @@ class SortingTypes{
             quick(arr,b,end);
         }
     }
+    
+    void merge(Integer arr[],Integer start,Integer end,Integer mid){
+        if (start==(end-1)){
+            if(arr[start]>arr[end]){
+                Integer temp=arr[start];
+                arr[start]=arr[end];
+                arr[end]=temp;
+                return;
+            }
+
+        }
+        else{
+            Integer mid1=mid+1;
+            while(start<=mid1 && mid1<=end){
+                if(arr[start]>arr[mid1]){
+                    Integer temp=arr[mid1];
+                    for(Integer i=mid1;i>start;i--){
+                        arr[i]=arr[i-1];
+                    }
+                    arr[start]=temp;
+                    start++;
+                    mid1++;
+                }
+                else{
+                    start++;
+                }
+            }
+        }
+    }
+    void mergesort(Integer arr[],Integer start,Integer end){
+        if (start<end){
+            Integer mid = (start+end)/2;
+            mergesort(arr, start, mid);
+            mergesort(arr, mid+1, end);
+            merge(arr, start, end,mid);
+        }
+
+    }
 }
 public class Sorting {
     public static void main(String[] args) {
@@ -115,6 +153,13 @@ public class Sorting {
         System.out.println("Quick: ");
         s.quick(ar,0,ar.length-1);
         for(Integer v:ar){
+            System.out.print(v+" ");
+        }
+        System.out.println();
+        Integer ar1[]=new Integer[]{2,3,4,1,5,7,0,8,9,6};
+        System.out.println("Merge: ");
+        s.mergesort(ar1,0,ar.length-1);
+        for(Integer v:ar1){
             System.out.print(v+" ");
         }
         System.out.println();
