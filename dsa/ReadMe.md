@@ -37,3 +37,6 @@ BFS,DFS-Graph
 
 Selection And Bubble sort
 ![Alt text](Selection-Bubble-Cocktailoutput.png)
+
+LCS
+![Alt text](LCSoutput.png)
