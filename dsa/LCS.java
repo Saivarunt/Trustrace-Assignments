@@ -7,29 +7,29 @@ class Collatz {
             long count=1;
             long sum=number;
             while(sum>1){
-                count++;
                 if(sum%2==0){ 
                     sum=sum/2;
                 }
                 else{
                     sum=(3*sum)+1;
                 }
-
-                if(sum==1){
-                    h.put(number,count);
+                if(h.containsKey(sum)){
+                    count+=h.get(sum);
                     break;
                 }
+                count++;
             }
+        h.put(number,count);
         return;
     }
 
     // Method 2
-    // Integer check(Integer number){
+    // long check(long number){
     //     if(number==1){
     //         return 1;
     //     }
-    //     Integer count=0;
-    //     Integer sum=number;
+    //     long count=0;
+    //     long sum=number;
     //     while(sum>1){
     //         if(sum%2==0){ 
     //             sum=sum/2;
