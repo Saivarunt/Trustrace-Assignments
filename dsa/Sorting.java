@@ -70,6 +70,34 @@ class SortingTypes{
             System.out.print(v+" ");
         }
     }
+
+    void quick(Integer arr[],Integer start,Integer end){
+        Integer mid = (start+end)/2;
+        Integer pivot = arr[mid]; 
+        Integer b = start;
+        Integer e = end;
+        while (b<=e){
+            while(arr[b]<pivot && b<=e){
+                b++;
+            }
+            while(arr[e]>pivot){
+                e--;
+            }
+            if(b<=e){
+                Integer temp = arr[b];
+                arr[b]=arr[e];
+                arr[e]=temp;
+                b++;
+                e--;
+            }
+        }
+        if(start<b-1){
+            quick(arr,start,b-1);
+        }
+        if(end>b){
+            quick(arr,b,end);
+        }
+    }
 }
 public class Sorting {
     public static void main(String[] args) {
@@ -82,6 +110,13 @@ public class Sorting {
         System.out.println();
         System.out.println("Cocktail: ");
         s.cocktail_sort(new Integer[]{2,3,4,1,5,7,0,8,9,6});
+        System.out.println();
+        Integer ar[]=new Integer[]{2,3,4,1,5,7,0,8,9,6};
+        System.out.println("Quick: ");
+        s.quick(ar,0,ar.length-1);
+        for(Integer v:ar){
+            System.out.print(v+" ");
+        }
         System.out.println();
     }
 }
