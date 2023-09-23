@@ -38,5 +38,8 @@ BFS,DFS-Graph
 Selection And Bubble sort
 ![Alt text](Selection-Bubble-Cocktailoutput.png)
 
+Quick and Merge Sort
+![Alt text](QuickMergeoutput.png)
+
 LCS
 ![Alt text](LCSoutput.png)
