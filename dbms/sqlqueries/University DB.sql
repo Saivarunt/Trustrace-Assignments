@@ -23,9 +23,7 @@ use university;
 -- exam_name varchar(30),
 -- place varchar(20),
 -- course_no int,
--- student_id int,
--- foreign key(course_no) references course_offering(course_no),
--- foreign key(student_id) references student(student_id)
+-- foreign key(course_no) references course_offering(course_no)
 -- );
 
 -- create table course(
@@ -44,4 +42,12 @@ use university;
 -- dept text,
 -- course_no int,
 -- foreign key(course_no) references course_offering(course_no)
+-- );
+
+-- create table marks(
+-- student_id int,
+-- grade int,
+-- exam_no int,
+-- foreign key(student_id) references student(student_id),
+-- foreign key(exam_no) references exam(exam_no)
 -- );

@@ -1,23 +1,38 @@
 -- create database Sport;
--- use Sport;
+use Sport;
+
+-- create table team(
+-- team_id varchar(10) primary key,
+-- name text,
+-- owner varchar(50)
+-- );
 
 -- create table Player(
 -- player_id int primary key auto_increment,
 -- name varchar(50),
 -- dob date,
--- no_of_match_played int
+-- no_of_match_played int,
+-- team_id varchar(10),
+-- foreign key(team_id) references team(team_id)
 -- );
 
 -- create table Matches (
 -- match_id int primary key auto_increment,
 -- place varchar(50),
--- stadium varchar(50),
--- date_of_match date
+-- date_of_match date,
+-- goals int,
+-- own_score int,
+-- opp_score int,
+-- home varchar(10),
+-- away varchar(10),
+-- foreign key(home) references team(team_id),
+-- foreign key(away) references team(team_id)
 -- );
 
 -- create table MatchPlayed (
--- team_score int,
--- player_score int,
+-- minutes time,
+-- assist int,
+-- goals_scored int,
 -- player_id int,
 -- match_id int,
 -- foreign key(player_id) references Player(player_id),
