@@ -99,10 +99,10 @@ create database store;
 use store;
 
 create table author(
+author_id int primary key,
 URL varchar(50) unique,
 author_name varchar(20),
-address varchar(50) ,
-primary key(author_name,address)
+address varchar(50) 
 );
 
 create table publisher(
@@ -133,13 +133,12 @@ uid varchar(10) primary key,
 warehouse_code varchar(10),
 item_id int,
 price float4,
-author_name varchar(20),
-address varchar(50) ,
+author_id int,
 publisher_name varchar(20),
 purchased text,
 foreign key(warehouse_code) references warehouse(code),
 foreign key(publisher_name) references publisher(publisher_name) ,
-foreign key(author_name,address) references author(author_name,address),
+foreign key(author_id) references author(author_id),
 foreign key(item_id) references item(item_id)
 );
 
