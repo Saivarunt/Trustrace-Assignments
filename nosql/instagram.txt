@@ -1,0 +1,384 @@
+use instagram
+db.createCollection("users")
+db.users.insertMany{[{user_id: , email: , verified: , phnumber: , dob: , pwd:}]}
+
+db.createCollection("pages")
+db.pages.insertMany{[{page_id: , user_id: , page_name: , page_handle: , bio: , dp: ,avatar: , pwd: , dob: , page_privacy:}]}
+
+
+db.createCollection("followdetails")
+db.followdetails.insertMany{[{followers: , following: }]}
+
+db.createCollection("device")
+db.device.insertMany{[{device_id: , page_id: ,device_location: , login_time: , logout_time: ,cookie: }]}
+
+db.createCollection("music")
+db.music.insertMany{[{music_id: , title: ,artist: , lyrics: , thumbnail: }]}
+
+db.createCollection("content")
+db.content.insertMany{[{content_id: , page_id : ,post_media: , media_type: , music_id: , views: , primary_poster: ,likes: , caption: , date_and_time: , location: , music_id_timestamp:}]}
+
+db.createCollection("comments")
+db.comments.insertMany{[{comment_id: , content_id: , content : , parent_comment_id : }]}
+
+db.createCollection("collab_post")
+db.collab_post.insertMany{[{ content_id: ,page_id: }]}
+
+db.createCollection("likes")
+db.likes.insertMany{[{page_id: , content_id: ,comment_id: }]}
+
+db.createCollection("stories")
+db.stories.insertMany{[{story_id: , content_id: ,liked_page_id: }]}
+
+db.createCollection("ref_stories")
+db.ref_stories.insertMany{[{coordinates: , story_id: , story_text: }]}
+
+db.createCollection("collection")
+db.collection.insertMany{[{collection_id: , collection_name: , page_id: }]}
+
+db.createCollection("collab")
+db.collab.insertMany{[{collab_id: , page_id: , is_owner:}]}
+
+db.createCollection("saved")
+db.saved.insertMany{[{content_id: , collab_id: , collection_id: }]}
+
+
+db.createCollection("post")
+db.post.insertMany{[{media_id: , content_id: , media_link: }]}
+
+db.createCollection("tags")
+db.tags.insertMany{[{tag_id: , coords: , media_id: , page_id:}]}
+
+db.createCollection("hashtagcount")
+db.hashtagcount.insertMany{[{hashtag: , hashcount: }]}
+
+db.createCollection("hashtag")
+db.hashtag.insertMany{[{content_id: , hashtag: }]}
+
+db.createCollection("chat")
+db.chat.insertMany{[{chat_id: , chat_type: , vanish_mode: , settings: }]}
+
+db.createCollection("message")
+db.message.insertMany{[{message_id: , content: , sender: , media_link: ,time: , chat_id: , is_vanish_mode: }]}
+
+db.createCollection("chat_details")
+db.chat_details.insertMany{[{chat_id: , page_id: , is_admin: ,lastReadMessage_id: }]}
+
+db.createCollection("report_details")
+db.report_details.insertMany{[{reporter_id: , reported_id: , content_id: , reported_content: }]}
+
+db.createCollection("blocked_pages")
+db.report_details.insertMany{[{blocker_id , blocked_id: }]}
+
+
+
+
+
+//data
+
+use instagram
+db.createCollection("users")
+db.users.insertMany(
+    [
+        { 
+            email: "user1@gmail.com",
+            verified: "no",
+            phnumber: 9999876788,
+            dob: '05/05/2002',
+            pwd: 'user1' 
+        },
+        { 
+            email: "user2@gmail.com",
+            verified: "yes",
+            phnumber: 9989876788,
+            dob: '05/05/1992',
+            pwd: 'user2' 
+        }, 
+        { 
+            email: "user3@gmail.com",
+            verified: "no",
+            phnumber: 6369876788,
+            dob: '07/12/2002',
+            pwd: 'user3' 
+        }
+    ]
+)
+
+db.createCollection("pages")
+
+db.pages.insertMany ([
+        {
+            user_id: ObjectId("652bbb9622427840cc572287"),
+            page_name: "user1",
+            page_handle: "user_1",
+            bio: "nothing to say",
+            dp: "",
+            avatar: "",
+            pwd: "user1",
+            dob: "05/05/2002",
+            page_privacy:"private"
+        },
+        {
+            user_id:  ObjectId("652bbb9622427840cc572288"),
+            page_name: "user2",
+            page_handle: "user_2",
+            bio: "nothing to say",
+            dp: "",
+            avatar: "",
+            pwd: "user2",
+            dob: "05/07/2002",
+            page_privacy:"public"
+        },
+        {
+            user_id:  ObjectId("652bbb9622427840cc572289"),
+            page_name: "user3",
+            page_handle: "user_3",
+            bio: "nothing to say",
+            dp: "",
+            avatar: "",
+            pwd: "user3",
+            dob: "05/07/1992",
+            page_privacy:"private"
+        }
+    ]
+)
+
+db.createCollection("followdetails")
+
+db.followdetails.insertMany([
+        {
+            followers: ObjectId("652bbc0122427840cc57228a") ,
+            following: ObjectId("652bbc0122427840cc57228b"),
+        },
+        {
+            followers: ObjectId("652bbc0122427840cc57228c") ,
+            following: ObjectId("652bbc0122427840cc57228a")
+        },
+        {
+            followers: ObjectId("652bbc0122427840cc57228b"),
+            following: ObjectId("652bbc0122427840cc57228c")
+        }
+    ]
+)
+
+db.createCollection("device")
+
+db.device.insertMany([
+        {
+            page_id:  ObjectId("652bbc0122427840cc57228a"),
+            device_location: "chennai",
+            login_time:"7:00 pm" ,
+            logout_time: "",
+            cookie: "cookie"
+        },
+        {
+            page_id: ObjectId("652bbc0122427840cc57228b"),
+            device_location: "chennai",
+            login_time:"7:00 pm" ,
+            logout_time: "",
+            cookie: "cookie"
+        },
+        {
+            page_id: ObjectId("652bbc0122427840cc57228c"),
+            device_location: "chennai",
+            login_time:"7:00 pm" ,
+            logout_time: "",
+            cookie: "cookie"
+        }
+    ]
+)
+
+db.createCollection("chat")
+
+db.chat.insertMany([
+        {
+            chat_type: "single",
+            vanish_mode: "false",
+            settings: ""
+        },
+        {
+            chat_type: "group",
+            vanish_mode: "false",
+            settings: ""
+        },
+        {
+            chat_type: "single",
+            vanish_mode: "true",
+            settings: ""
+        },
+    ]
+)
+
+db.createCollection("message")
+
+db.message.insertMany([
+        {
+            content:"hi " ,
+            sender: ObjectId("652bbc0122427840cc57228a"),
+            media_link: "",
+            time: "7:00 pm",
+            chat_id: ObjectId("652bbd4922427840cc572293"),
+            is_vanish_mode: "false",
+        },
+        {
+            content:"how are you" ,
+            sender: ObjectId("652bbc0122427840cc57228a"),
+            media_link: "",
+            time: "7:01 pm",
+            chat_id:  ObjectId("652bbd4922427840cc572293"),
+            is_vanish_mode: "false"
+        },
+        {
+            content:"not bad" ,
+            sender: ObjectId("652bbc0122427840cc57228b"),
+            media_link: "",
+            time: "9:00 pm",
+            chat_id:  ObjectId("652bbd4922427840cc572293"),
+            is_vanish_mode: "false"
+        }
+]
+)
+
+db.createCollection("chat_details")
+
+db.chat_details.insertMany([
+        {
+            chat_id:  ObjectId("652bbd4922427840cc572293"),
+            page_id:  ObjectId("652bbc0122427840cc57228a"),
+            is_admin:false ,
+            lastReadMessage_id: ObjectId("652bbf0822427840cc572298")
+         },
+         {
+            chat_id: ObjectId("652bbd4922427840cc572293"),
+            page_id: ObjectId("652bbc0122427840cc57228b"),
+            is_admin: false,
+            lastReadMessage_id: ObjectId("652bbf0822427840cc572297")
+         }
+    ]
+)
+
+db.createCollection("music")
+
+db.music.insertMany([
+        {
+            title: "Photograph",
+            artist: "Ed Sheeran",
+            lyrics: "",
+            thumbnail: "url"
+        },
+        {
+            title: "Numb",
+            artist: "Linkin Park",
+            lyrics: "",
+            thumbnail: "url"
+        },
+        {
+            title: "Money Trees",
+            artist: "Kendrick Lamar",
+            lyrics: "",
+            thumbnail: "url"
+        }
+    ]
+)
+
+db.createCollection("content")
+
+db.content.insertMany([
+        {
+            page_id : ObjectId("652bbc0122427840cc57228a"),
+            post_media:"url" ,
+            media_type:"post" ,
+            music_id:  ObjectId("652bc1ef22427840cc57229e"),
+            views: 7000,
+            primary_poster:  ObjectId("652bbc0122427840cc57228a"),
+            likes: 600,
+            caption: "",
+            date_and_time:new ISODate("2020-05-18T14:10:30Z") ,
+            location: "chennai",
+            music_id_timestamp:"5s"
+        },
+        {
+            page_id : ObjectId("652bbc0122427840cc57228b"),
+            post_media:"url" ,
+            media_type:"post" ,
+            music_id: "",
+            views: 706000,
+            primary_poster: ObjectId("652bbc0122427840cc57228b"),
+            likes: 67700,
+            caption: "",
+            date_and_time:new ISODate("2022-05-18T14:10:30Z") ,
+            location: "coimbatore",
+            music_id_timestamp:""
+        },
+        {
+            page_id : ObjectId("652bbc0122427840cc57228c"),
+            post_media:"url" ,
+            media_type:"story" ,
+            music_id: ObjectId("652bc1ef22427840cc5722a0"),
+            views: 1000,
+            primary_poster: ObjectId("652bbc0122427840cc57228c"),
+            likes: 500,
+            caption: "",
+            date_and_time:new ISODate("2023-05-28T14:10:30Z") ,
+            location: "mumbai",
+            music_id_timestamp:"70s"
+        }
+    ]
+)
+db.content.insertOne({page_id : ObjectId("652bbc0122427840cc57228c"),post_media:"url" ,     media_type:"post" ,music_id:"",views: 10000,primary_poster: ObjectId("652bbc0122427840cc57228c"),        likes: 5000,caption: "",date_and_time:new ISODate("2023-05-28T14:10:30Z") ,location: "goa",music_id_timestamp:""})
+
+db.createCollection("post")
+db.post.insertMany([{content_id:ObjectId("652bc37d22427840cc5722a1") , media_link:"url" },
+{content_id: ObjectId("652bc37d22427840cc5722a2") , media_link:"url" },
+{content_id: ObjectId("652bc37d22427840cc5722a2") , media_link:"url" }])
+
+db.post.insertMany([{content_id: ObjectId("652bc37d22427840cc5722a3") , media_link:"url" },{content_id: ObjectId("652f7fda5d1654ab6969cb1e") , media_link:"url" }])
+
+
+db.content.insertOne({page_id : ObjectId("652bbc0122427840cc57228c"),post_media:"url" ,     media_type:"post" ,music_id:"",views: 20000,primary_poster: ObjectId("652bbc0122427840cc57228c"),        likes: 54000,caption: "",date_and_time:new ISODate("2023-05-28T14:10:30Z") ,location: "bengaluru",music_id_timestamp:""})
+
+db.post.insertOne({content_id:ObjectId("6530cf730d915ef63d35e4ee"),media_link:"url"})
+
+user, content, post
+
+//aggregation
+db.content.aggregate([{$group:{_id:"$page_id"}},{$count:"count:"}])
+
+db.content.aggregate([{$group:{_id:"$page_id",count:{$sum:1}}}])
+
+
+//shell - group and lookup
+[{$group:{_id: {page_id: "$page_id",},count: {$sum: 1,},},} , {$lookup:{from: "pages",localField: "_id.page_id",foreignField: "_id",as: "result",},},]
+
+//shell with unwind
+[{$group:{_id: {page_id: "$page_id",},count: {$sum: 1,},},},{$lookup:{from: "pages",localField: "_id.page_id",foreignField: "_id",as: "result",},},{$project:{name: "$result.page_name",count: 1,},},{$unwind:{path: "$name",},},]
+
+
+comment
+interacted the most
+
+db.createCollection("comments")
+db.comments.insertMany([{content_id: ObjectId("652bc37d22427840cc5722a1"), content :"good post", parent_comment_id :null },{content_id: ObjectId("652bc37d22427840cc5722a1"), content :"great post", parent_comment_id :null }])
+
+db.comments.insertMany([{content_id: ObjectId("652bc37d22427840cc5722a1"), content :"cmt1", parent_comment_id : ObjectId("6530d2d20d915ef63d35e4f0") },{content_id: ObjectId("652bc37d22427840cc5722a1"), content :"cmt2", parent_comment_id :ObjectId("6530d2d20d915ef63d35e4f0")},{content_id: ObjectId("652bc37d22427840cc5722a1"), content :"cmt3", parent_comment_id : ObjectId("6530d2d20d915ef63d35e4f0") },{content_id: ObjectId("652bc37d22427840cc5722a1"), content :"cmt4", parent_comment_id :ObjectId("6530d2d20d915ef63d35e4f0")}, {content_id: ObjectId("652bc37d22427840cc5722a1"), content :"cmt1", parent_comment_id : ObjectId("6530d2d20d915ef63d35e4f1") },{content_id: ObjectId("652bc37d22427840cc5722a1"), content :"cmt2", parent_comment_id :ObjectId("6530d2d20d915ef63d35e4f1")}])
+
+db.comments.insertMany([{content_id:ObjectId("652bc37d22427840cc5722a2") , content :"awesome post", parent_comment_id :null }])
+
+db.comments.insertMany([{content_id: ObjectId("652bc37d22427840cc5722a2"), content :"cmt1", parent_comment_id : ObjectId("6530ee0c3a7a70e9c742b06e") },{content_id: ObjectId("652bc37d22427840cc5722a2"), content :"cmt2", parent_comment_id :ObjectId("6530ee0c3a7a70e9c742b06e")},{content_id: ObjectId("652bc37d22427840cc5722a2"), content :"cmt3", parent_comment_id : ObjectId("6530ee0c3a7a70e9c742b06e") },{content_id: ObjectId("652bc37d22427840cc5722a2"), content :"cmt4", parent_comment_id :ObjectId("6530ee0c3a7a70e9c742b06e")}, {content_id: ObjectId("652bc37d22427840cc5722a2"), content :"cmt5", parent_comment_id : ObjectId("6530ee0c3a7a70e9c742b06e") },{content_id: ObjectId("652bc37d22427840cc5722a2"), content :"cmt6", parent_comment_id :ObjectId("6530ee0c3a7a70e9c742b06e")}])
+
+
+db.createCollection("likes")
+db.likes.insertMany([{page_id: ObjectId("652bbc0122427840cc57228b"), content_id:null ,comment_id:ObjectId("6530eeda3a7a70e9c742b06f") },{page_id: ObjectId("652bbc0122427840cc57228b"), content_id:null ,comment_id: ObjectId("6530eeda3a7a70e9c742b070") },{page_id: ObjectId("652bbc0122427840cc57228c"), content_id:null ,comment_id: ObjectId("6530eeda3a7a70e9c742b072") },{page_id: ObjectId("652bbc0122427840cc57228c"), content_id: ObjectId("652bc37d22427840cc5722a1") ,comment_id: null }])
+
+
+db.followdetails.insertOne({followers: ObjectId("652bbc0122427840cc57228c"),following: ObjectId("652bbc0122427840cc57228b")})
+
+project values into last stage -
+most interaction between users for post -
+mutual followers-
+time sensitive post-
+most interacted least interacted-
+
+db.likes.insertMany([{page_id: ObjectId("652bbc0122427840cc57228b"), content_id: ObjectId("652bc37d22427840cc5722a1") ,comment_id:null },{page_id: ObjectId("652bbc0122427840cc57228c"), content_id: ObjectId("652bc37d22427840cc5722a2") ,comment_id:null }])
+
+db.likes.insertMany([{page_id: ObjectId("652bbc0122427840cc57228b"), content_id: ObjectId("652f7fda5d1654ab6969cb1e") ,comment_id:null },{page_id: ObjectId("652bbc0122427840cc57228b"), content_id: ObjectId("6530cf730d915ef63d35e4ee") ,comment_id:null }])

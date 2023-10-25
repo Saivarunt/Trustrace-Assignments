@@ -1,0 +1,83 @@
+// and
+db.egCollection.find({$and:[{age:{$gt:20}},{name:{$ne:"sai"}}]})
+//greter than
+db.egCollection.find({age:{$gt:20}})
+
+//nested queries
+db.egCollection.find({"nested.q":{$ne:10}})
+
+db.egCollection.find({$and:[{nested:{$exists:true}},{"nested.q":{$ne:10}}]})
+
+db.egCollection.insertOne({name:"testing",age:undefined})
+
+db.egCollection.find({age:{$exists:true}}) - age will be set to null even when set to undefined
+[
+  { _id: ObjectId("6526886832c508b425f46811"), name: 'varun', age: 21 },
+  {
+    _id: ObjectId("652689e432c508b425f46817"),
+    name: 'mohanan',
+    age: 21
+  },
+  {
+    _id: ObjectId("652689ee32c508b425f46818"),
+    name: 'barathi',
+    age: 21
+  },
+  {
+    _id: ObjectId("652689fa32c508b425f46819"),
+    name: 'pranam',
+    age: 21
+  },
+  { _id: ObjectId("65268a0b32c508b425f4681a"), name: 'kumar', age: 21 },
+  { _id: ObjectId("65268a1632c508b425f4681b"), name: 'babu', age: 21 },
+  {
+    _id: ObjectId("6526c7754057ea10a5750577"),
+    name: 'testing',
+    age: null
+  }
+]
+
+
+db.eg2.aggregate([{$lookup:{from:"eg1",localField:"eg1_id",foreignField:"_id",as:"eg1"}}])
+
+db.eg2.aggregate([{$lookup:{from:"eg1",localField:"eg1_id",foreignField:"_id",as:"eg1"}},{$unwind:"$eg1"}])
+
+eg3 ids:
+    '0': ObjectId("6529265b36f5311354fbc043"),
+    '1': ObjectId("6529265b36f5311354fbc044"),
+    '2': ObjectId("6529265b36f5311354fbc045"),
+    '3': ObjectId("6529265b36f5311354fbc046"),
+    '4': ObjectId("6529265b36f5311354fbc047"),
+    '5': ObjectId("6529265b36f5311354fbc048"),
+    '6': ObjectId("6529265b36f5311354fbc049")
+
+db.eg2.updateOne({major:"Cloud"},{$set:{eg3_id:[ObjectId("6529265b36f5311354fbc043"),ObjectId("6529265b36f5311354fbc045")]}})
+
+db.eg2.updateOne({major:"CS"},{$set:{eg3_id:[ObjectId("6529265b36f5311354fbc043"),ObjectId("6529265b36f5311354fbc045")]}})
+
+db.eg2.aggregate([{$lookup:{from:"eg3",localField:"eg3_id",foreignField:"_id",as:"eg3"}}])
+
+
+db.eg1.createIndex({name:1,age:-1},{name:"eg1name_ageIndex"})
+
+db.eg1.createIndex({age:-1},{name:"eg1ageIndex"})
+
+db.eg3.createIndex({major:"text"},{name:"eg3majorIndex"})
+
+A collection can only have one text index, but that index can cover multiple fields.
+
+
+db.latlong.insertMany([{name:"KVK",val:[77.07768966990517,11.046109737964583]},
+{name:"Subham",val:[77.06419085131536,11.050342288591029]},
+{name:"Karnan",val:[ 77.08133868891905,11.051844954600602]},
+{name:"24/7 bites",val:[77.07013645572259,11.058456593583829]},
+{name:"SP",val:[77.06617569698011, 11.056074362238725]},
+{name:"Fresh N Tasty",val:[77.06445908326937,11.05528463304851]}])
+
+{val:{$near:[ 77.06684543640647,11.051182378868315]}}- for filter
+
+db.geo.insertMany([{name:"global-barbeque",location:{type:"Point",coordinates:[76.99604373404361,11.022573197914694]}},])
+
+ db.geo.insertMany([{name:"Swetha-hotel",location:{type:"Point",coordinates:[77.0794339536246,11.05793626219903]}},{name:"sri-saravana-bavan",location:{type:"Point",coordinates:[77.17324197171907,11.105162927060244]}},{name:"lalithas-hotel-veg",location:{type:"Point",coordinates:[77.10051248494074,11.233468049959656]}}])
+
+ db.geo.find({"location.coordinates":{$nearSphere:[78.17324197171907,12.105162927060244]}})
