@@ -40,23 +40,6 @@ public class App
 //        s.persist(cobj);
 
 // to select everything from the table
-//        CriteriaQuery<chat> query = s.getCriteriaBuilder().createQuery(chat.class);
-//        query.from(chat.class);
-//        List<chat> results = s.createQuery(query).getResultList();
-//        for(chat i: results) {
-//        	System.out.println("Chat ID: "+ i.chatId);
-//        	System.out.println("Chat Type: "+ i.chat_type);
-//        	System.out.println("Chat Settings: "+ i.settings);
-//        	System.out.println("Vanish Mode: "+ i.vanish_mode);
-//        }
-        
-        
-//		update query
-        int updatequery = s.createMutationQuery("update chat set vanish_mode = :newvalue where chatId = '101'")
-        		.setParameter("newvalue",true).executeUpdate();
-        
-        System.out.println("Update :"+updatequery);
-        
         CriteriaQuery<chat> query = s.getCriteriaBuilder().createQuery(chat.class);
         query.from(chat.class);
         List<chat> results = s.createQuery(query).getResultList();
@@ -66,10 +49,27 @@ public class App
         	System.out.println("Chat Settings: "+ i.settings);
         	System.out.println("Vanish Mode: "+ i.vanish_mode);
         }
-        tb.commit();
-        s.close();
-        sf.close();
-    }
+        
+        
+//		update query
+//        int updatequery = s.createMutationQuery("update chat set vanish_mode = :newvalue where chatId = '101'")
+//        		.setParameter("newvalue",true).executeUpdate();
+//        
+//        System.out.println("Update :"+updatequery);
+//        
+//        CriteriaQuery<chat> query = s.getCriteriaBuilder().createQuery(chat.class);
+//        query.from(chat.class);
+//        List<chat> results = s.createQuery(query).getResultList();
+//        for(chat i: results) {
+//        	System.out.println("Chat ID: "+ i.chatId);
+//        	System.out.println("Chat Type: "+ i.chat_type);
+//        	System.out.println("Chat Settings: "+ i.settings);
+//        	System.out.println("Vanish Mode: "+ i.vanish_mode);
+//        }
+//        tb.commit();
+//        s.close();
+//        sf.close();
+//    }
     public  Properties loadConfig() {
         Properties properties = new Properties();
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("hibernate.properties")) {
