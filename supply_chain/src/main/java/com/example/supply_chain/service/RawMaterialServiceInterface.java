@@ -7,8 +7,8 @@ import com.example.supply_chain.model.RawMaterial;
 public interface RawMaterialServiceInterface {
 
 	List<RawMaterial> getAllData();
-	List<RawMaterial> getById(long _id);
+	List<RawMaterial> getById(String _id);
 	void saveData(RawMaterial r);
 	void update(RawMaterial r);
-	void delete(long _id);
+	void delete(String _id);
 }

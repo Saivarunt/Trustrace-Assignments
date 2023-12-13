@@ -2,8 +2,10 @@ package com.example.supply_chain.model;
 
 import java.util.ArrayList;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.Data;
@@ -15,11 +17,10 @@ import lombok.Setter;
 public class style{
 	
 	    @Id
-        private long _id;
+        private String _id;
 	    public Availability availability;
-	    
-	    @Field("facility_name")
-	    private String facilityName;
+
+		private String facility_uid;
 	    
 	    @Field("material_composition")
 	    private ArrayList<Material> materialComposition;
@@ -34,12 +35,11 @@ public class style{
 	    
 	    @Field("style_number")
 	    private String styleNumber;
-	    
+
 	    @Field("style_uid")
-	    private String styleUid;
+	    private ObjectId styleUid;
 	    
-	    @Field("supplier_name")
-	    private String supplierName;
+	    private String supplier_uid;
 	    
 	    private String type;
 	    private String year;
@@ -54,6 +54,7 @@ public class style{
 	    
 	    @Data
 	    public class Material{
+			@DocumentReference(lazy = true)
 	    	@Field("m_id")
 	    	private String mid;
 	    	private int composition;

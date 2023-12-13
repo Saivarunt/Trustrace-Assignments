@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.example.supply_chain.model.RawMaterial;
 
-public interface RawMaterialRepository extends MongoRepository<RawMaterial, Long>{
+public interface RawMaterialRepository extends MongoRepository<RawMaterial, String>{
 
-	List<RawMaterial> findBy_id(long _id);
+	List<RawMaterial> findBy_id(String _id);
 
-	void deleteBy_id(long _id);
+	void deleteBy_id(String _id);
 
 }

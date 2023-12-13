@@ -34,47 +34,62 @@ public class StyleController {
 	}
 	
 	@GetMapping("/select/stylebyId/{id}")
-	public List<style> selectById(@PathVariable("id") long id){
+	public List<style> selectById(@PathVariable("id") String id){
 		return service.getById(id);
 		
 	}
 	
 	@PostMapping("/add/style")
 	public String insert(@RequestBody style s) {
-		List<style> data = service.getById(s.get_id());
-		
-		if (data==null){
-		service.addData(s);
-		return "Inserted Successfully";
-		}
-		else{
-			return "Style already exists";
+		try {
+			List<style> data = service.getById(s.get_id());
+			
+			if (data==null){
+			service.addData(s);
+			return "Inserted Successfully";
+			}
+			else{
+				return "Style already exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 	}
 	
 	@PutMapping("/update/style")
 	public String update(@RequestBody style s) {
 
-		List<style> data = service.getById(s.get_id());	
-		if (data==null){
-			service.updateData(s);
-			return "Updated Successfully";
-		}
-		else{
-			return "Style does not exists";
+		try {
+			List<style> data = service.getById(s.get_id());	
+			if (data==null){
+				service.updateData(s);
+				return "Updated Successfully";
+			}
+			else{
+				return "Style does not exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 	}
 
 	
 	@DeleteMapping("/delete/style/{id}")
-	public String deleteById(@PathVariable("id") long id) {
-		List<style> data = service.getById(id);	
-		if (data==null){
-			service.deleteData(id);
-			return "deleted Successfully";
-		}
-		else{
-			return "Style does not exists";
+	public String deleteById(@PathVariable("id") String id) {
+		try {
+			List<style> data = service.getById(id);	
+			if (data==null){
+				service.deleteData(id);
+				return "deleted Successfully";
+			}
+			else{
+				return "Style does not exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 
 	}

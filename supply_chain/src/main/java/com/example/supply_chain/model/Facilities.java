@@ -2,8 +2,10 @@ package com.example.supply_chain.model;
 
 import java.util.ArrayList;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.AllArgsConstructor;
@@ -15,7 +17,7 @@ import lombok.Data;
 public class Facilities {
 	
     @Id
-	private Long _id;
+	private String _id;
     
     private ArrayList<String> certifications;
     
@@ -29,9 +31,11 @@ public class Facilities {
     private String facilityName;
     
     private String location;
+    
     private String material;
     
+    @DocumentReference(lazy = true)
     @Field("supplier_uid")
-    private String supplierUid;
+    private ObjectId supplierUid;
     
 }

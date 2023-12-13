@@ -39,7 +39,7 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 		// return repo.findAll();
 	}
 	
-	public List<Facilities> getById(long _id){
+	public List<Facilities> getById(String _id){
 		List<Facilities> list = new ArrayList<>();
 		list = repo.findBy_id(_id);
 		return list;
@@ -53,7 +53,7 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 		repo.save(f);
 	}
 	
-	public void delete(long _id) {
+	public void delete(String _id) {
 		repo.deleteBy_id(_id);
 	}
 	

@@ -24,52 +24,74 @@ public class FacilitiesController {
 	
 	@GetMapping("/select/facilities")
 	public List<Facilities> getAllFacilities(){
-		return service.getAllData();
+		try {
+			return service.getAllData();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@GetMapping("/select/facilitiesbyId/{id}")
-	public List<Facilities> getById(@PathVariable("id") long id){
-		return service.getById(id);
+	public List<Facilities> getById(@PathVariable("id") String id){
+		try {
+			return service.getById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 		
 	}
 	
 	@PostMapping("/save/facilities")
 	public String insert(@RequestBody Facilities f) {
-		List<Facilities> data = service.getById(f.get_id());
-		
-		if (data==null){
-			service.saveData(f);
-			return "Inserted Successfully";
-		}
-		else{
-			return "Facility already exists";
+		try {
+			List<Facilities> data = service.getById(f.get_id());
+			if (data==null){
+				service.saveData(f);
+				return "Inserted Successfully";
+			}
+			else{
+				return "Facility already exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 	}
 	
 	@PutMapping("/update/facility")
 	public String update(@RequestBody Facilities f) {
-		List<Facilities> data = service.getById(f.get_id());
-		
-		if (data==null){
-			service.update(f);
-			return "Updated Successfully";
-		}
-		else{
-			return "Facility does not exists";
+		try {
+			List<Facilities> data = service.getById(f.get_id());
+			if (data==null){
+				service.update(f);
+				return "Updated Successfully";
+			}
+			else{
+				return "Facility does not exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 
 	}
 	
 	@DeleteMapping("/delete/facility/{id}")
-	public String delete(@PathVariable("id") long id) {
-		List<Facilities> data = service.getById(id);
-		
-		if (data==null){
-			service.delete(id);
-			return "Deleted Successfully";
-		}
-		else{
-			return "Facility does not exists";
+	public String delete(@PathVariable("id") String id) {
+		try {
+			List<Facilities> data = service.getById(id);
+			if (data==null){
+				service.delete(id);
+				return "Deleted Successfully";
+			}
+			else{
+				return "Facility does not exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 
 

@@ -26,7 +26,7 @@ public class SupplierService implements SupplierServiceInterface{
 		return list;
 	}
 	
-	public List<Suppliers> getById(long _id){
+	public List<Suppliers> getById(String _id){
 		List<Suppliers> list = new ArrayList<>();
 		list = repo.findBy_id(_id);
 		return list;
@@ -40,7 +40,7 @@ public class SupplierService implements SupplierServiceInterface{
 		repo.save(s);
 	}
 	
-	public void delete(long _id) {
+	public void delete(String _id) {
 		repo.deleteBy_id(_id);
 	}
 	

@@ -29,21 +29,26 @@ public class SuppliersController {
 	}
 	
 	@GetMapping("/select/suppliersbyId/{id}")
-	public List<Suppliers> getById(@PathVariable("id") long id){
+	public List<Suppliers> getById(@PathVariable("id") String id){
 		return service.getById(id);
 		
 	}
 	
 	@PostMapping("/save/suppliers")
 	public String insert(@RequestBody Suppliers s) {
-		List<Suppliers> data = service.getById(s.get_id());
-		
-		if (data==null){
-			service.saveData(s);
-			return "Inserted Successfully";
-		}
-		else{
-			return "Raw Material already exists";
+		try {
+			List<Suppliers> data = service.getById(s.get_id());
+			
+			if (data==null){
+				service.saveData(s);
+				return "Inserted Successfully";
+			}
+			else{
+				return "Raw Material already exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 
 
@@ -51,29 +56,39 @@ public class SuppliersController {
 	
 	@PutMapping("/update/supplier")
 	public String update(@RequestBody Suppliers s) {
-		List<Suppliers> data = service.getById(s.get_id());
-		
-		if (data==null){
-			service.update(s);
-			return "Updated Successfully";
-		}
-		else{
-			return "Raw Material does not exists";
+		try {
+			List<Suppliers> data = service.getById(s.get_id());
+			
+			if (data==null){
+				service.update(s);
+				return "Updated Successfully";
+			}
+			else{
+				return "Raw Material does not exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 
 
 	}
 	
 	@DeleteMapping("/delete/supplier/{id}")
-	public String delete(@PathVariable("id") long id) {
-		List<Suppliers> data = service.getById(id);
-		
-		if (data==null){
-			service.delete(id);
-			return "Deleted Successfully";
-		}
-		else{
-			return "Raw Material does not exists";
+	public String delete(@PathVariable("id") String id) {
+		try {
+			List<Suppliers> data = service.getById(id);
+			
+			if (data==null){
+				service.delete(id);
+				return "Deleted Successfully";
+			}
+			else{
+				return "Raw Material does not exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 	}
 	

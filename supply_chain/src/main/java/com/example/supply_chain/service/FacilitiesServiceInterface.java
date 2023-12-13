@@ -6,9 +6,9 @@ import com.example.supply_chain.model.Facilities;
 
 public interface FacilitiesServiceInterface {
 	List<Facilities> getAllData();
-	List<Facilities> getById(long _id);
+	List<Facilities> getById(String _id);
 	void saveData(Facilities f);
 	void update(Facilities f);
-	void delete(long _id);
+	void delete(String _id);
 	void updateFacilityName(String oldName, String newName);
 }

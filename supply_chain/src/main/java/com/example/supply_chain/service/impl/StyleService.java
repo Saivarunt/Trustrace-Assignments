@@ -26,7 +26,7 @@ public class StyleService implements StyleServiceInterface{
 		return list;		
 	}
 	
-	public List<style> getById(long _id){
+	public List<style> getById(String _id){
 		List<style> list = new ArrayList<>();
 		list = repo.findBy_id(_id);
 		return list;
@@ -40,7 +40,7 @@ public class StyleService implements StyleServiceInterface{
 		repo.save(s);
 	}
 	
-	public void deleteData(long _id) {
+	public void deleteData(String _id) {
 		repo.deleteBy_id(_id);
 	}
 	

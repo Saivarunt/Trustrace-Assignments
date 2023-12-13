@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.example.supply_chain.model.Suppliers;
 
-public interface SuppliersRepository extends MongoRepository<Suppliers,Long>{
+public interface SuppliersRepository extends MongoRepository<Suppliers,String>{
 
-	void deleteBy_id(long _id);
+	void deleteBy_id(String _id);
 
-	List<Suppliers> findBy_id(long _id);
+	List<Suppliers> findBy_id(String _id);
 
 }

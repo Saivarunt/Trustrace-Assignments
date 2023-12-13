@@ -28,49 +28,64 @@ public class RawMaterialController {
 	}
 	
 	@GetMapping("/select/rawmaterialbyId/{id}")
-	public List<RawMaterial> getById(@PathVariable("id") long id){
+	public List<RawMaterial> getById(@PathVariable("id") String id){
 		return service.getById(id);
 		
 	}
 	
 	@PostMapping("/save/rawmaterial")
 	public String insert(@RequestBody RawMaterial r) {
-		List<RawMaterial> data = service.getById(r.get_id());
-		
-		if (data==null){
-			service.saveData(r);
-			return "Inserted Successfully";
-		}
-		else{
-			return "Raw Material already exists";
+		try {
+			List<RawMaterial> data = service.getById(r.get_id());
+			
+			if (data==null){
+				service.saveData(r);
+				return "Inserted Successfully";
+			}
+			else{
+				return "Raw Material already exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 
 	}
 	
 	@PutMapping("/update/rawmaterial")
 	public String update(@RequestBody RawMaterial r) {
-		List<RawMaterial> data = service.getById(r.get_id());
-		
-		if (data==null){
-			service.update(r);
-			return "Updated Successfully";
-		}
-		else{
-			return "Raw Material does not exists";
+		try {
+			List<RawMaterial> data = service.getById(r.get_id());
+			
+			if (data==null){
+				service.update(r);
+				return "Updated Successfully";
+			}
+			else{
+				return "Raw Material does not exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 
 	}
 	
 	@DeleteMapping("/delete/rawmaterial/{id}")
-	public String delete(@PathVariable("id") long id) {
-		List<RawMaterial> data = service.getById(id);
-		
-		if (data==null){
-			service.delete(id);
-			return "Deleted Successfully";
-		}
-		else{
-			return "Raw Material does not exists";
+	public String delete(@PathVariable("id") String id) {
+		try {
+			List<RawMaterial> data = service.getById(id);
+			
+			if (data==null){
+				service.delete(id);
+				return "Deleted Successfully";
+			}
+			else{
+				return "Raw Material does not exists";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Intenal error";
 		}
 
 	}

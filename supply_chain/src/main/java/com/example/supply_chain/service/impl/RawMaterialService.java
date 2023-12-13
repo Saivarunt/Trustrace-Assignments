@@ -22,7 +22,7 @@ public class RawMaterialService implements RawMaterialServiceInterface{
 		return list;
 	}
 	
-	public List<RawMaterial> getById(long _id){
+	public List<RawMaterial> getById(String _id){
 		List<RawMaterial> list = new ArrayList<>();
 		list = repo.findBy_id(_id);
 		return list;
@@ -36,7 +36,7 @@ public class RawMaterialService implements RawMaterialServiceInterface{
 		repo.save(r);
 	}
 	
-	public void delete(long _id) {
+	public void delete(String _id) {
 		repo.deleteBy_id(_id);
 	}
 }
