@@ -20,7 +20,7 @@ public class style{
         private String _id;
 	    public Availability availability;
 
-		private String facility_uid;
+		private ObjectId facility_uid;
 	    
 	    @Field("material_composition")
 	    private ArrayList<Material> materialComposition;
@@ -39,7 +39,7 @@ public class style{
 	    @Field("style_uid")
 	    private ObjectId styleUid;
 	    
-	    private String supplier_uid;
+	    private ObjectId supplier_uid;
 	    
 	    private String type;
 	    private String year;
