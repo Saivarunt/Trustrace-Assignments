@@ -37,7 +37,7 @@ public class style{
 	    private String styleNumber;
 
 	    @Field("style_uid")
-	    private ObjectId styleUid;
+	    private String styleUid;
 	    
 	    private ObjectId supplier_uid;
 	    
