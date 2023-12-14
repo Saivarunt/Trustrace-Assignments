@@ -25,13 +25,23 @@ public class RawMaterialController {
 	RawMaterialServiceInterface service;
 	
 	@GetMapping("/select/rawmaterial")
-	public List<RawMaterial> getAllData(){
-		return service.getAllData();
+	public ResponseEntity<List<RawMaterial>> getAllData(){
+		try {
+			return new ResponseEntity<List<RawMaterial>>(service.getAllData(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping("/select/rawmaterialbyId/{id}")
-	public List<RawMaterial> getById(@PathVariable("id") String id){
-		return service.getById(id);
+	public ResponseEntity<List<RawMaterial>> getById(@PathVariable("id") String id){
+		try {
+			return new ResponseEntity<List<RawMaterial>>(service.getById(id), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+		}
 		
 	}
 	
@@ -55,39 +65,39 @@ public class RawMaterialController {
 	}
 	
 	@PutMapping("/update/rawmaterial")
-	public String update(@RequestBody RawMaterial r) {
+	public ResponseEntity<String> update(@RequestBody RawMaterial r) {
 		try {
 			List<RawMaterial> data = service.getById(r.get_id());
 			
 			if (data==null){
 				service.update(r);
-				return "Updated Successfully";
+				return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
 			}
 			else{
-				return "Raw Material does not exists";
+				return new ResponseEntity<String>("Raw Material does not exists", HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Intenal error";
+			return new ResponseEntity<String>("Intenal error", HttpStatus.BAD_REQUEST);
 		}
 
 	}
 	
 	@DeleteMapping("/delete/rawmaterial/{id}")
-	public String delete(@PathVariable("id") String id) {
+	public ResponseEntity<String> delete(@PathVariable("id") String id) {
 		try {
 			List<RawMaterial> data = service.getById(id);
 			
 			if (data==null){
 				service.delete(id);
-				return "Deleted Successfully";
+				return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
 			}
 			else{
-				return "Raw Material does not exists";
+				return new ResponseEntity<String>("Raw Material does not exists", HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Intenal error";
+			return new ResponseEntity<String>("Intenal error", HttpStatus.BAD_REQUEST);
 		}
 
 	}

@@ -7,6 +7,7 @@ import java.util.concurrent.Flow.Publisher;
 import org.bson.types.ObjectId;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.convert.WritingConverter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -27,30 +28,26 @@ public class Facilities {
     
     private ArrayList<String> certifications;
     
-    @Field("created_by")
     private String createdBy;
     
-    @Field("facilities_uid")
     private String facilitiesUid;
     
-    @Field("facility_name")
     private String facilityName;
     
     private String location;
     
     private String material;
     
-    @WritingConverter
-    public class SupplierReferenceConverter implements Converter<Suppliers, DocumentPointer<String>> {
+    // @WritingConverter
+    // public class SupplierReferenceConverter implements Converter<Suppliers, DocumentPointer<String>> {
 
-        public DocumentPointer<String> convert(Suppliers source) {
-                return () -> source.get_id();
-        }
-    }
-    @DocumentReference(collection = "suppliers")
-    @Field("supplier_uid")
+    //     public DocumentPointer<String> convert(Suppliers source) {
+    //             return () -> source.get_id();
+    //     }
+    // }
+    // @DocumentReference(collection = "suppliers")
 
-    private Suppliers supplierUid;
-    
-
+    // @DocumentReference(collection ="suppliers")
+    // @Field("supplier_uid")
+    // private Suppliers supplierUid;
 }

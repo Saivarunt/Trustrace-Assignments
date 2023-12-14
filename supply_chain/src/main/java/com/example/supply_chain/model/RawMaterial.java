@@ -2,11 +2,9 @@ package com.example.supply_chain.model;
 
 import java.util.ArrayList;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.Data;
 
@@ -16,32 +14,28 @@ public class RawMaterial {
 
 	@Id
 	private String _id;
-	
-	@Field("RM_supplier_name")
+
 	private String rmSupplierName;
 	
 	private Availability availability;
 	
-	@DocumentReference(lazy = true)
-	@Field("facilities_uid")
-    private ArrayList<Facilities> facilitiesuid;
+	//will create overhead in data returned since it is alread present in supplier
+	@DocumentReference(collection = "facilities")
+    private ArrayList<Facilities> facilitiesUid;
 	
-	@Field("material_composition")
     private ArrayList<String> materialComposition;
 	
-	@Field("material_number")
 	private String materialNumber;
 	
-	@Field("material_uid")
 	private String materialUid;
 	
 	private String name;
 	private String number;
 	
-	@Field("required_certificate")
 	private ArrayList<String> requiredCertificate;
 	
-	
+	@DocumentReference(collection = "suppliers")
+    private ArrayList<Suppliers> supplierUid;
 	// @Field("supplier_material_name")
 	// private String supplierMaterialName;
 	
