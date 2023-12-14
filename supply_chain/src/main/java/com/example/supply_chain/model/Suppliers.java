@@ -21,7 +21,7 @@ public class Suppliers {
 	private String emailId;
 	
 	@DocumentReference(lazy = true)
-	private ArrayList<ObjectId> facilities;
+	private ArrayList<Facilities> facilities;
 	private Location location;
 	
 	@Field("material_type")
@@ -35,6 +35,7 @@ public class Suppliers {
 	@Field("supplier_name")
 	private String supplierName;
 	
+
 	@Field("supplier_uid")
 	private String supplierUid;
 	private String tier;

@@ -3,6 +3,8 @@ package com.example.supply_chain.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,20 +36,20 @@ public class RawMaterialController {
 	}
 	
 	@PostMapping("/save/rawmaterial")
-	public String insert(@RequestBody RawMaterial r) {
+	public ResponseEntity<String> insert(@RequestBody RawMaterial r) {
 		try {
 			List<RawMaterial> data = service.getById(r.get_id());
 			
 			if (data==null){
 				service.saveData(r);
-				return "Inserted Successfully";
+				return new ResponseEntity<String>("Inserted Successfully", HttpStatus.OK);
 			}
 			else{
-				return "Raw Material already exists";
+				return new ResponseEntity<>("Raw Material already exists",HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Intenal error";
+			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
 		}
 
 	}

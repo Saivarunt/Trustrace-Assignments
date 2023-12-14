@@ -24,7 +24,7 @@ public class RawMaterial {
 	
 	@DocumentReference(lazy = true)
 	@Field("facilities_uid")
-    private ArrayList<ObjectId> facilitiesuid;
+    private ArrayList<Facilities> facilitiesuid;
 	
 	@Field("material_composition")
     private ArrayList<String> materialComposition;

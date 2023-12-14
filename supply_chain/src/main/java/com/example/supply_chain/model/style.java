@@ -20,7 +20,8 @@ public class style{
         private String _id;
 	    public Availability availability;
 
-		private ObjectId facility_uid;
+		@DocumentReference(lazy = true)
+		private Facilities facility_uid;
 	    
 	    @Field("material_composition")
 	    private ArrayList<Material> materialComposition;
@@ -39,7 +40,8 @@ public class style{
 	    @Field("style_uid")
 	    private String styleUid;
 	    
-	    private ObjectId supplier_uid;
+		@DocumentReference(lazy = true)
+	    private Suppliers supplier_uid;
 	    
 	    private String type;
 	    private String year;

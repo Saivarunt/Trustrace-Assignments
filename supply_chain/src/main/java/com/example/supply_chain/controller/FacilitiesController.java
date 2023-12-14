@@ -3,6 +3,8 @@ package com.example.supply_chain.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,83 +25,83 @@ public class FacilitiesController {
 	FacilitiesServiceInterface service;
 	
 	@GetMapping("/select/facilities")
-	public List<Facilities> getAllFacilities(){
+	public ResponseEntity<List<Facilities>> getAllFacilities(){
 		try {
-			return service.getAllData();
+			return new ResponseEntity<>(service.getAllData(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@GetMapping("/select/facilitiesbyId/{id}")
-	public List<Facilities> getById(@PathVariable("id") String id){
+	public ResponseEntity<List<Facilities>> getById(@PathVariable("id") String id){
 		try {
-			return service.getById(id);
+			return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 		
 	}
 	
 	@PostMapping("/save/facilities")
-	public String insert(@RequestBody Facilities f) {
+	public ResponseEntity<String> insert(@RequestBody Facilities f) {
 		try {
 			List<Facilities> data = service.getById(f.get_id());
-			if (data==null){
+			if (data.isEmpty()){
 				service.saveData(f);
-				return "Inserted Successfully";
+				return new ResponseEntity<>("Inserted Successfully",HttpStatus.OK);
 			}
 			else{
-				return "Facility already exists";
+				return new ResponseEntity<>("Facility already exists",HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Intenal error";
+			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@PutMapping("/update/facility")
-	public String update(@RequestBody Facilities f) {
+	public ResponseEntity<String> update(@RequestBody Facilities f) {
 		try {
 			List<Facilities> data = service.getById(f.get_id());
-			if (data==null){
+			if (data.isEmpty()){
 				service.update(f);
-				return "Updated Successfully";
+				return new ResponseEntity<>("Updated Successfully",HttpStatus.OK);
 			}
 			else{
-				return "Facility does not exists";
+				return new ResponseEntity<>("Facility does not exists",HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Intenal error";
+			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
 		}
 
 	}
 	
 	@DeleteMapping("/delete/facility/{id}")
-	public String delete(@PathVariable("id") String id) {
+	public ResponseEntity<String> delete(@PathVariable("id") String id) {
 		try {
 			List<Facilities> data = service.getById(id);
-			if (data==null){
+			if (data.isEmpty()){
 				service.delete(id);
-				return "Deleted Successfully";
+				return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
 			}
 			else{
-				return "Facility does not exists";
+				return new ResponseEntity<String>("Facility does not exists", HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Intenal error";
+			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
 		}
 
 
 	}
 	
-	@PutMapping("/update/facility-name")
-	public String updateName(String oldName , String newName) {
-		service.updateFacilityName(oldName,newName);
-		return "Updated Successfully";
-	}
+	// @PutMapping("/update/facility-name")
+	// public String updateName(String oldName , String newName) {
+	// 	service.updateFacilityName(oldName,newName);
+	// 	return "Updated Successfully";
+	// }
 }
