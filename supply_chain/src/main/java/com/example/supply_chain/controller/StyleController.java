@@ -52,56 +52,54 @@ public class StyleController {
 	}
 	
 	@PostMapping("/add/style")
-	public ResponseEntity<String> insert(@RequestBody style s) {
+	public ResponseEntity<style> insert(@RequestBody style s) {
 		try {
 			List<style> data = service.getByUid(s.getStyleUid());
 			
 			if (data.isEmpty()){
-				service.addData(s);
-				return new ResponseEntity<String>("Inserted Successfully", HttpStatus.OK);
+				return new ResponseEntity<>(service.addData(s), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<String>("Style already exists", HttpStatus.OK);
+				return new ResponseEntity<>(new style(), HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("Intenal error", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@PutMapping("/update/style")
-	public ResponseEntity<String> update(@RequestBody style s) {
+	public ResponseEntity<style> update(@RequestBody style s) {
 
 		try {
 			List<style> data = service.getByUid(s.getStyleUid());	
 			if (data.isEmpty()==false){
-				service.updateData(s);
-				return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+				return new ResponseEntity<>(service.updateData(s), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<String>("Style does not exists", HttpStatus.OK);
+				return new ResponseEntity<>(new style(), HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("Intenal error", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	
 	@DeleteMapping("/delete/style/{id}")
-	public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
+	public ResponseEntity<Boolean> deleteById(@PathVariable("id") String id) {
 		try {
 			List<style> data = service.getById(id);	
 			if (data.isEmpty()==false){
-				service.deleteData(id);
-				return new ResponseEntity<>("deleted Successfully",HttpStatus.OK);
+				;
+				return new ResponseEntity<>(service.deleteData(id),HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<>("Style does not exists",HttpStatus.OK);
+				return new ResponseEntity<>(false,HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>( "Intenal error", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>( false, HttpStatus.BAD_REQUEST);
 		}
 
 	}

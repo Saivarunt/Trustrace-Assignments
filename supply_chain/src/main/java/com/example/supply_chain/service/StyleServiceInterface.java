@@ -8,8 +8,8 @@ public interface StyleServiceInterface {
 	List<style> getByUid(String uid);
 	List<style> getAllStyle();
 	List<style> getById(String _id);
-	void addData(style s);
-	void updateData(style s);
-	void deleteData(String _id);
+	style addData(style s);
+	style updateData(style s);
+	Boolean deleteData(String _id);
 	List<style> getAllData();
 }

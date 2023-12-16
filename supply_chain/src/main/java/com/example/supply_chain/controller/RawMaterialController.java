@@ -46,58 +46,56 @@ public class RawMaterialController {
 	}
 	
 	@PostMapping("/save/rawmaterial")
-	public ResponseEntity<String> insert(@RequestBody RawMaterial r) {
+	public ResponseEntity<RawMaterial> insert(@RequestBody RawMaterial r) {
 		try {
 			List<RawMaterial> data = service.getByUid(r.getMaterialUid());
 			
 			if (data.isEmpty()){
-				service.saveData(r);
-				return new ResponseEntity<String>("Inserted Successfully", HttpStatus.OK);
+				
+				return new ResponseEntity<>(service.saveData(r), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<>("Raw Material already exists",HttpStatus.OK);
+				return new ResponseEntity<>(new RawMaterial(),HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
 		}
 
 	}
 	
 	@PutMapping("/update/rawmaterial")
-	public ResponseEntity<String> update(@RequestBody RawMaterial r) {
+	public ResponseEntity<RawMaterial> update(@RequestBody RawMaterial r) {
 		try {
 			List<RawMaterial> data = service.getByUid(r.getMaterialUid());
 			
 			if (data.isEmpty()==false){
-				service.update(r);
-				return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+				return new ResponseEntity<>(service.update(r), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<String>("Raw Material does not exists", HttpStatus.OK);
+				return new ResponseEntity<>(new RawMaterial(), HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("Intenal error", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 
 	}
 	
 	@DeleteMapping("/delete/rawmaterial/{id}")
-	public ResponseEntity<String> delete(@PathVariable("id") String id) {
+	public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
 		try {
 			List<RawMaterial> data = service.getById(id);
 			
 			if (data.isEmpty()==false){
-				service.delete(id);
-				return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
+				return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<String>("Raw Material does not exists", HttpStatus.OK);
+				return new ResponseEntity<>(false, HttpStatus.OK);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("Intenal error", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
 		}
 
 	}

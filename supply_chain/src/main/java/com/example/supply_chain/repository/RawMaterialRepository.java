@@ -10,6 +10,6 @@ public interface RawMaterialRepository extends MongoRepository<RawMaterial, Stri
 	List<RawMaterial> findByMaterialUid(String materialUid);
 	List<RawMaterial> findBy_id(String _id);
 
-	void deleteBy_id(String _id);
+	Boolean deleteBy_id(String _id);
 
 }

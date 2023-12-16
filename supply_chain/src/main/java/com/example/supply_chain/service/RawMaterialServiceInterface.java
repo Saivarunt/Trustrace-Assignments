@@ -8,7 +8,7 @@ public interface RawMaterialServiceInterface {
 	List<RawMaterial> getByUid(String uid);
 	List<RawMaterial> getAllData();
 	List<RawMaterial> getById(String _id);
-	void saveData(RawMaterial r);
-	void update(RawMaterial r);
-	void delete(String _id);
+	RawMaterial saveData(RawMaterial r);
+	RawMaterial update(RawMaterial r);
+	Boolean delete(String _id);
 }

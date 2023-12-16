@@ -6,10 +6,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Document(collection="raw_material")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RawMaterial {
 
 	@Id
@@ -41,9 +45,4 @@ public class RawMaterial {
 	
 	private String type;
 	private String year;
-	
-	@Data
-	public class Availability{
-		private String amount;
-	}
 }

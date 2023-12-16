@@ -11,12 +11,16 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Document(collection="style")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 // @JsonIgnoreProperties(ignoreUnknown = true)
 public class style{
 	
@@ -68,11 +72,11 @@ public class style{
 	    private String year;
 	    
 	    
-	    public class Availability{
+	    // public class Availability{
 	    	
-	    	@Getter
-	    	@Setter
-	    	private String amount;
-	    }   
+	    // 	@Getter
+	    // 	@Setter
+	    // 	private String amount;
+	    // }   
 	
 }

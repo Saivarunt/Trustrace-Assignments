@@ -35,16 +35,16 @@ public class StyleService implements StyleServiceInterface{
 	public List<style> getByUid(String uid){
 		return repo.findByStyleUid(uid);
 	}
-	public void addData(style s) {
-		repo.save(s);
+	public style addData(style s) {
+		return repo.save(s);
 	}
 	
-	public void updateData(style s) {
-		repo.save(s);
+	public style updateData(style s) {
+		return repo.save(s);
 	}
 	
-	public void deleteData(String _id) {
-		repo.deleteBy_id(_id);
+	public Boolean deleteData(String _id) {
+		return repo.deleteBy_id(_id);
 	}
 	
 	public List<style> getAllData(){

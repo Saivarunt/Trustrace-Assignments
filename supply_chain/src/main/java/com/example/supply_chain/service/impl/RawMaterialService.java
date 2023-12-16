@@ -31,15 +31,15 @@ public class RawMaterialService implements RawMaterialServiceInterface{
 	public List<RawMaterial> getByUid(String uid){;
 		return repo.findByMaterialUid(uid);
 	}
-	public void saveData(RawMaterial r) {
-		repo.save(r);
+	public RawMaterial saveData(RawMaterial r) {
+		return repo.save(r);
 	}
 	
-	public void update(RawMaterial r) {
-		repo.save(r);
+	public RawMaterial update(RawMaterial r) {
+		return repo.save(r);
 	}
 	
-	public void delete(String _id) {
-		repo.deleteBy_id(_id);
+	public Boolean delete(String _id) {
+		return repo.deleteBy_id(_id);
 	}
 }
