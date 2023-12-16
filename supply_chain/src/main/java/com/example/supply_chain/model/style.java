@@ -2,9 +2,14 @@ package com.example.supply_chain.model;
 
 import java.util.ArrayList;
 
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.convert.WritingConverter;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentPointer;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 import lombok.Getter;
@@ -12,6 +17,7 @@ import lombok.Setter;
 
 @Document(collection="style")
 @Data
+// @JsonIgnoreProperties(ignoreUnknown = true)
 public class style{
 	
 	    @Id
@@ -19,7 +25,15 @@ public class style{
 	    public Availability availability;
 
 		//will create overhead in data returned since it is alread present in supplier
-		@DocumentReference(collection = "facilities")
+
+		// @WritingConverter
+		// public class FacilitiesReferenceConverter implements Converter<Facilities, DocumentPointer<String>> {
+
+		//     public DocumentPointer<String> convert(Facilities source) {
+		//             return () -> source.get_id();
+		//     }
+		// }
+		@DocumentReference(collection = "facilities",lazy = true)
 		private Facilities facilityUid;
 	    
 
@@ -39,7 +53,15 @@ public class style{
 
 	    private String styleUid;
 	    
-		@DocumentReference(collection = "suppliers")
+
+		// @WritingConverter
+		// public class SupplierReferenceConverter implements Converter<Suppliers, DocumentPointer<String>> {
+
+		// 	public DocumentPointer<String> convert(Suppliers source) {
+		// 			return () -> source.get_id();
+		// 	}
+		// }
+		@DocumentReference(collection = "suppliers",lazy = true)
 	    private Suppliers supplierUid;
 	    
 	    private String type;
@@ -52,11 +74,5 @@ public class style{
 	    	@Setter
 	    	private String amount;
 	    }   
-	    
-	    @Data
-	    public class Material{
-			@DocumentReference(collection = "raw_material")
-	    	private RawMaterial mid;
-	    	private int composition;
-	    }
+	
 }

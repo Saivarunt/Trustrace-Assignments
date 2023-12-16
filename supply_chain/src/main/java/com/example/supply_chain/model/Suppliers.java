@@ -6,10 +6,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Document(collection = "suppliers")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Suppliers {
 
 	@Id
@@ -33,13 +37,5 @@ public class Suppliers {
 
 	private String supplierUid;
 	private String tier;
-	
-	@Data
-	public class Location{
-		private String address;
-		private String country;
-		private String pincode;
-		private String region;
-		private String state;
-	}
+
 }

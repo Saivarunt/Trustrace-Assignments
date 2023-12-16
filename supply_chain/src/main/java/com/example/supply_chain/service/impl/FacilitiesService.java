@@ -45,16 +45,20 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 		return list;
 	}
 	
-	public void saveData(Facilities f) {
-		repo.save(f);
+	public List<Facilities> getByUid(String uid){ 
+		return repo.findByFacilitiesUid(uid);
 	}
 	
-	public void update(Facilities f) {
-		repo.save(f);
+	public Facilities saveData(Facilities f) {
+		return repo.save(f);
 	}
 	
-	public void delete(String _id) {
-		repo.deleteBy_id(_id);
+	public Facilities update(Facilities f) {
+		return repo.save(f);
+	}
+	
+	public Boolean delete(String _id) {
+		return repo.deleteBy_id(_id);
 	}
 	
 	public void updateFacilityName(String oldName, String newName) {

@@ -27,7 +27,10 @@ public class RawMaterialService implements RawMaterialServiceInterface{
 		list = repo.findBy_id(_id);
 		return list;
 	}
-	
+
+	public List<RawMaterial> getByUid(String uid){;
+		return repo.findByMaterialUid(uid);
+	}
 	public void saveData(RawMaterial r) {
 		repo.save(r);
 	}

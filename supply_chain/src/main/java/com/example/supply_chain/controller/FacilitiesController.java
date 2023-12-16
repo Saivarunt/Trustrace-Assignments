@@ -46,54 +46,52 @@ public class FacilitiesController {
 	}
 	
 	@PostMapping("/save/facilities")
-	public ResponseEntity<String> insert(@RequestBody Facilities f) {
+	public ResponseEntity<Facilities> insert(@RequestBody Facilities f) {
 		try {
-			List<Facilities> data = service.getById(f.get_id());
+			List<Facilities> data = service.getByUid(f.getFacilitiesUid());
 			if (data.isEmpty()){
-				service.saveData(f);
-				return new ResponseEntity<>("Inserted Successfully",HttpStatus.OK);
+				
+				return new ResponseEntity<>(service.saveData(f),HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<>("Facility already exists",HttpStatus.OK);
+				return new ResponseEntity<>(new Facilities(),HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
 		}
 	}
 	
-	@PutMapping("/update/facility")
-	public ResponseEntity<String> update(@RequestBody Facilities f) {
+	@PutMapping("/update/facilities")
+	public ResponseEntity<Facilities> update(@RequestBody Facilities f) {
 		try {
-			List<Facilities> data = service.getById(f.get_id());
-			if (data.isEmpty()){
-				service.update(f);
-				return new ResponseEntity<>("Updated Successfully",HttpStatus.OK);
+			List<Facilities> data = service.getByUid(f.getFacilitiesUid());
+			if (data.isEmpty()==false){
+				return new ResponseEntity<>(service.update(f),HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<>("Facility does not exists",HttpStatus.OK);
+				return new ResponseEntity<>(new Facilities(),HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
 		}
 
 	}
 	
-	@DeleteMapping("/delete/facility/{id}")
-	public ResponseEntity<String> delete(@PathVariable("id") String id) {
+	@DeleteMapping("/delete/facilities/{id}")
+	public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
 		try {
 			List<Facilities> data = service.getById(id);
-			if (data.isEmpty()){
-				service.delete(id);
-				return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
+			if (data.isEmpty()==false){
+				return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<String>("Facility does not exists", HttpStatus.OK);
+				return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
 		}
 
 

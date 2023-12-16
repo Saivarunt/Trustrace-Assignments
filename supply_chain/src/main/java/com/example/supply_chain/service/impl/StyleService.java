@@ -32,6 +32,9 @@ public class StyleService implements StyleServiceInterface{
 		return list;
 	}
 	
+	public List<style> getByUid(String uid){
+		return repo.findByStyleUid(uid);
+	}
 	public void addData(style s) {
 		repo.save(s);
 	}

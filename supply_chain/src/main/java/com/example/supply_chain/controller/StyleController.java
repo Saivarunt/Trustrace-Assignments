@@ -54,11 +54,11 @@ public class StyleController {
 	@PostMapping("/add/style")
 	public ResponseEntity<String> insert(@RequestBody style s) {
 		try {
-			List<style> data = service.getById(s.get_id());
+			List<style> data = service.getByUid(s.getStyleUid());
 			
-			if (data==null){
-			service.addData(s);
-			return new ResponseEntity<String>("Inserted Successfully", HttpStatus.OK);
+			if (data.isEmpty()){
+				service.addData(s);
+				return new ResponseEntity<String>("Inserted Successfully", HttpStatus.OK);
 			}
 			else{
 				return new ResponseEntity<String>("Style already exists", HttpStatus.OK);
@@ -73,8 +73,8 @@ public class StyleController {
 	public ResponseEntity<String> update(@RequestBody style s) {
 
 		try {
-			List<style> data = service.getById(s.get_id());	
-			if (data==null){
+			List<style> data = service.getByUid(s.getStyleUid());	
+			if (data.isEmpty()==false){
 				service.updateData(s);
 				return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
 			}
@@ -92,7 +92,7 @@ public class StyleController {
 	public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
 		try {
 			List<style> data = service.getById(id);	
-			if (data==null){
+			if (data.isEmpty()==false){
 				service.deleteData(id);
 				return new ResponseEntity<>("deleted Successfully",HttpStatus.OK);
 			}

@@ -31,7 +31,7 @@ public class SuppliersController {
 			return new ResponseEntity<>(service.getAllData(),HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -41,66 +41,65 @@ public class SuppliersController {
 			return new ResponseEntity<>(service.getById(id),HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(null,HttpStatus.OK);
+			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
 		}
 		
 	}
 	
 	@PostMapping("/save/suppliers")
-	public ResponseEntity<String> insert(@RequestBody Suppliers s) {
+	public ResponseEntity<Suppliers> insert(@RequestBody Suppliers s) {
 		try {
-			List<Suppliers> data = service.getById(s.get_id());
+			List<Suppliers> data = service.getByUid(s.getSupplierUid());
 			
-			if (data==null){
-				service.saveData(s);
-				return new ResponseEntity<String>("Inserted Successfully", HttpStatus.OK);
+			if (data.isEmpty()){
+				
+				return new ResponseEntity<>(service.saveData(s), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<String>("Raw Material already exists", HttpStatus.OK);
+				return new ResponseEntity<>(new Suppliers(), HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
 		}
 
 
 	}
 	
-	@PutMapping("/update/supplier")
-	public ResponseEntity<String> update(@RequestBody Suppliers s) {
+	@PutMapping("/update/suppliers")
+	public ResponseEntity<Suppliers> update(@RequestBody Suppliers s) {
 		try {
-			List<Suppliers> data = service.getById(s.get_id());
+			List<Suppliers> data = service.getByUid(s.getSupplierUid());
 			
-			if (data==null){
-				service.update(s);
-				return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+			if (data.isEmpty()==false){
+				
+				return new ResponseEntity<>(service.update(s), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<String>("Supplier does not exists", HttpStatus.OK);
+				return new ResponseEntity<>(new Suppliers(), HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
 		}
 
 
 	}
 	
-	@DeleteMapping("/delete/supplier/{id}")
-	public ResponseEntity<String> delete(@PathVariable("id") String id) {
+	@DeleteMapping("/delete/suppliers/{id}")
+	public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
 		try {
 			List<Suppliers> data = service.getById(id);
 			
-			if (data==null){
-				service.delete(id);
-				return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
+			if (data.isEmpty()==false){
+				return new ResponseEntity<Boolean>(service.delete(id), HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<String>("Supplier does not exists", HttpStatus.OK);
+				return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>("Intenal error",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
 		}
 	}
 	

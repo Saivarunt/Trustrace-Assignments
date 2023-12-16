@@ -48,9 +48,9 @@ public class RawMaterialController {
 	@PostMapping("/save/rawmaterial")
 	public ResponseEntity<String> insert(@RequestBody RawMaterial r) {
 		try {
-			List<RawMaterial> data = service.getById(r.get_id());
+			List<RawMaterial> data = service.getByUid(r.getMaterialUid());
 			
-			if (data==null){
+			if (data.isEmpty()){
 				service.saveData(r);
 				return new ResponseEntity<String>("Inserted Successfully", HttpStatus.OK);
 			}
@@ -67,9 +67,9 @@ public class RawMaterialController {
 	@PutMapping("/update/rawmaterial")
 	public ResponseEntity<String> update(@RequestBody RawMaterial r) {
 		try {
-			List<RawMaterial> data = service.getById(r.get_id());
+			List<RawMaterial> data = service.getByUid(r.getMaterialUid());
 			
-			if (data==null){
+			if (data.isEmpty()==false){
 				service.update(r);
 				return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
 			}
@@ -88,7 +88,7 @@ public class RawMaterialController {
 		try {
 			List<RawMaterial> data = service.getById(id);
 			
-			if (data==null){
+			if (data.isEmpty()==false){
 				service.delete(id);
 				return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
 			}

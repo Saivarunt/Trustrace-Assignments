@@ -8,6 +8,7 @@ import com.example.supply_chain.model.style;
 
 public interface StyleRepository extends MongoRepository<style, String>{
 
+	List<style> findByStyleUid(String styleUid);
 	List<style> findBy_id(String _id);
 
 	void deleteBy_id(String id);

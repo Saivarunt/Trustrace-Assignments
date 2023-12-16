@@ -32,16 +32,19 @@ public class SupplierService implements SupplierServiceInterface{
 		return list;
 	}
 	
-	public void saveData(Suppliers s) {
-		repo.save(s);
+	public List<Suppliers> getByUid(String uid){
+		return repo.findBySupplierUid(uid);
+	}
+	public Suppliers saveData(Suppliers s) {
+		return repo.save(s);
 	}
 	
-	public void update(Suppliers s) {
-		repo.save(s);
+	public Suppliers update(Suppliers s) {
+		return repo.save(s);
 	}
 	
-	public void delete(String _id) {
-		repo.deleteBy_id(_id);
+	public Boolean delete(String _id) {
+		return repo.deleteBy_id(_id);
 	}
 	
 	public void updateSupplierName(String oldName,String newName) {

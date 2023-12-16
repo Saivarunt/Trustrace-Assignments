@@ -2,6 +2,7 @@ package com.example.supply_chain.model;
 
 import java.lang.annotation.Target;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Flow.Publisher;
 
 import org.bson.types.ObjectId;
@@ -17,16 +18,18 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Document(collection="facilities")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Facilities {
 	
     @Id
 	private String _id;
     
-    private ArrayList<String> certifications;
+    private List<String> certifications;
     
     private String createdBy;
     
