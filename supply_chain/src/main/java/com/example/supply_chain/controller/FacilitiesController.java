@@ -40,7 +40,7 @@ public class FacilitiesController {
 			return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(List.of(new Facilities()), HttpStatus.BAD_REQUEST);
 		}
 		
 	}
@@ -58,7 +58,7 @@ public class FacilitiesController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new Facilities(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class FacilitiesController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new Facilities(),HttpStatus.BAD_REQUEST);
 		}
 
 	}

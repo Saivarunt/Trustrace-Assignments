@@ -40,9 +40,14 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 	}
 	
 	public List<Facilities> getById(String _id){
-		List<Facilities> list = new ArrayList<>();
-		list = repo.findBy_id(_id);
-		return list;
+		try {
+			List<Facilities> list = new ArrayList<>();
+			list = repo.findBy_id(_id);
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return List.of(new Facilities());
+		}
 	}
 	
 	public List<Facilities> getByUid(String uid){ 
@@ -50,15 +55,30 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 	}
 	
 	public Facilities saveData(Facilities f) {
-		return repo.save(f);
+		try {
+			return repo.save(f);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Facilities();
+		}
 	}
 	
 	public Facilities update(Facilities f) {
-		return repo.save(f);
+		try {
+			return repo.save(f);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Facilities();
+		}
 	}
 	
 	public Boolean delete(String _id) {
-		return repo.deleteBy_id(_id);
+		try {
+			return repo.deleteBy_id(_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public void updateFacilityName(String oldName, String newName) {
