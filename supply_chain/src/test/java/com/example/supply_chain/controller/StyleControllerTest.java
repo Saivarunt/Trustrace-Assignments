@@ -36,7 +36,7 @@ public class StyleControllerTest {
 
     @Test
     void testWhetherStyleExists() throws Exception {
-        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Suppliers s = new Suppliers("cd","testemail@gmail.com",new ArrayList<Facilities>(){{add(f);}},new Location("add","con","pin","reg","state"),"mtype","cotton","style","supplier A","supplier1","tier1");
         Availability a = new Availability("High");
         RawMaterial rm = new RawMaterial("ab","rmsup1",a,new ArrayList<Facilities>(){{add(f);}},new ArrayList<String>(){{add("Silk");}},"m101","101","material A","material1",new ArrayList<String>(){{add("NONE");}},new ArrayList<Suppliers>(){{add(s);}},"Summer","2023");
@@ -65,7 +65,7 @@ public class StyleControllerTest {
 
     @Test
     void testWhetherPOSTExists() throws Exception {
-        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Suppliers s = new Suppliers("cd","testemail@gmail.com",new ArrayList<Facilities>(){{add(f);}},new Location("add","con","pin","reg","state"),"mtype","cotton","style","supplier A","supplier1","tier1");
         Availability a = new Availability("High");
         RawMaterial rm = new RawMaterial("ab","rmsup1",a,new ArrayList<Facilities>(){{add(f);}},new ArrayList<String>(){{add("Silk");}},"m101","101","material A","material1",new ArrayList<String>(){{add("NONE");}},new ArrayList<Suppliers>(){{add(s);}},"Summer","2023");
@@ -89,7 +89,7 @@ public class StyleControllerTest {
 
     @Test
     void testWhetherPUTExists() throws Exception {
-        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Suppliers s = new Suppliers("cd","testemail@gmail.com",new ArrayList<Facilities>(){{add(f);}},new Location("add","con","pin","reg","state"),"mtype","cotton","style","supplier A","supplier1","tier1");
         Availability a = new Availability("High");
         RawMaterial rm = new RawMaterial("ab","rmsup1",a,new ArrayList<Facilities>(){{add(f);}},new ArrayList<String>(){{add("Silk");}},"m101","101","material A","material1",new ArrayList<String>(){{add("NONE");}},new ArrayList<Suppliers>(){{add(s);}},"Summer","2023");
@@ -117,7 +117,7 @@ public class StyleControllerTest {
 
     @Test
     void testWhetherDELExists() throws Exception {
-        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Suppliers s = new Suppliers("cd","testemail@gmail.com",new ArrayList<Facilities>(){{add(f);}},new Location("add","con","pin","reg","state"),"mtype","cotton","style","supplier A","supplier1","tier1");
         Availability a = new Availability("High");
         RawMaterial rm = new RawMaterial("ab","rmsup1",a,new ArrayList<Facilities>(){{add(f);}},new ArrayList<String>(){{add("Silk");}},"m101","101","material A","material1",new ArrayList<String>(){{add("NONE");}},new ArrayList<Suppliers>(){{add(s);}},"Summer","2023");

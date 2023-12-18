@@ -66,7 +66,7 @@ public class SupplierControllerTest {
 
     @Test
     void testPOSTExists() throws Exception {
-        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f =new Facilities("fuid", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Suppliers s = new Suppliers("cd","testemail@gmail.com",new ArrayList<Facilities>(){{add(f);}},new Location("add","con","pin","reg","state"),"mtype","cotton","style","supplier A","supplier1","tier1");
         Mockito.when(service.saveData(s)).thenReturn(s);
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/suppliers/save/suppliers").content(asJsonString(s))
@@ -86,7 +86,7 @@ public class SupplierControllerTest {
 
     @Test
     void testPUTExists() throws Exception {
-        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Suppliers s = new Suppliers("cd","testemail@gmail.com",new ArrayList<Facilities>(){{add(f);}},new Location("add","con","pin","reg","state"),"mtype","cotton","style","supplier A","supplier1","tier1");
         Suppliers s1 = new Suppliers("cd","testemail@gmail.com",new ArrayList<Facilities>(){{add(f);}},new Location("add","con","pin","reg","state"),"mtype","Wool","style","supplier A","supplier1","tier1");
         Mockito.when(service.getByUid("supplier1")).thenReturn(List.of(s));
@@ -112,7 +112,7 @@ public class SupplierControllerTest {
 
     @Test
     void testDELExists() throws Exception {
-        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Suppliers s = new Suppliers("cd","testemail@gmail.com",new ArrayList<Facilities>(){{add(f);}},new Location("add","con","pin","reg","state"),"mtype","cotton","style","supplier A","supplier1","tier1");
         Mockito.when(service.getById("cd")).thenReturn(List.of(s));
         Mockito.when(service.delete("cd")).thenReturn(true);

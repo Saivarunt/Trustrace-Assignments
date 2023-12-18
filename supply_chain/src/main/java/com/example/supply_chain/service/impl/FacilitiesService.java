@@ -1,10 +1,14 @@
 package com.example.supply_chain.service.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.supply_chain.dao.DaoInterface;
 import com.example.supply_chain.model.Facilities;
@@ -20,6 +24,8 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 	@Autowired
 	DaoInterface dao;
 	
+	private final String FOLDER_PATH="D:/varun/college/trustrace/code/java/supply_chain/image_files/";
+
 	public List<Facilities> getAllData(){
 		List<Facilities> list = new ArrayList<>();
 		list = repo.findAll();
@@ -84,4 +90,48 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 	public void updateFacilityName(String oldName, String newName) {
 		dao.facilityNameUpdate(oldName, newName);
 	}
+
+	public byte[] getByFileName(String path){
+		List<Facilities> fileData = repo.findByImagePath(path);
+        String filePath=fileData.get(0).getImagePath();
+        byte[] images;
+		try {
+			images = Files.readAllBytes(new File(filePath).toPath());
+			return images;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new byte[1];
+		}
+	}
+
+	public String uploadFacilitywithFile(Facilities f,MultipartFile file) {
+		String filePath=FOLDER_PATH+file.getOriginalFilename();
+		f.setImagePath(filePath);
+        Facilities fileData = update(f);
+
+        try {
+			file.transferTo(new File(filePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+        if (fileData != new Facilities()) {
+            return "file uploaded successfully : " + filePath;
+        }
+		else{
+			return "Unsuccessful";
+		}
+	}
+
+	@Override
+	public Boolean deleteImage(Facilities f,String fileName) {
+		f.setImagePath("");
+		update(f);
+		String filePath=FOLDER_PATH+fileName;
+		File target = new File(filePath);
+		return target.delete();
+	}
+
 }

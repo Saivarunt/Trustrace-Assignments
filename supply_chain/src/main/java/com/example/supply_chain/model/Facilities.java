@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.Flow.Publisher;
 
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.ReadOnlyProperty;
@@ -25,7 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Facilities {
-	
+
     @Id
 	private String _id;
     
@@ -41,6 +42,7 @@ public class Facilities {
     
     private String material;
     
+    private String imagePath="";
     // @WritingConverter
     // public class SupplierReferenceConverter implements Converter<Suppliers, DocumentPointer<String>> {
 

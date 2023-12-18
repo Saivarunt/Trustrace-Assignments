@@ -16,8 +16,7 @@ public interface FacilitiesRepository extends MongoRepository<Facilities,String>
 
 	List<Facilities> findByFacilitiesUid(String facilitiesUid);
 	List<Facilities> findBy_id(String _id);
-
 	Boolean deleteBy_id(String _id);
-
+	List<Facilities> findByImagePath(String imagePath);
 }
 

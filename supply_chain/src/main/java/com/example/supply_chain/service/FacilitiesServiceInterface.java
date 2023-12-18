@@ -3,6 +3,7 @@ package com.example.supply_chain.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.supply_chain.model.Facilities;
 
@@ -15,4 +16,7 @@ public interface FacilitiesServiceInterface {
 	Facilities update(Facilities f);
 	Boolean delete(String _id);
 	void updateFacilityName(String oldName, String newName);
+	byte[] getByFileName(String path);
+	String uploadFacilitywithFile(Facilities f, MultipartFile file);
+	Boolean deleteImage(Facilities f, String fileName);
 }

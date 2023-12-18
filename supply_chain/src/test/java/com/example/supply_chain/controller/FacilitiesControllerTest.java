@@ -50,7 +50,7 @@ public class FacilitiesControllerTest {
     // GET
     @Test
     void testWhetherFacilityExists() throws Exception {
-        Mockito.when(service.getById(Mockito.anyString())).thenReturn(List.of(new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD")));
+        Mockito.when(service.getById(Mockito.anyString())).thenReturn(List.of(new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","")));
         String result = mockMvc.perform(MockMvcRequestBuilders.get("/facilities/select/facilitiesbyId/cd")).andExpect(status().isOk()).andReturn().getResponse()
                 .getContentAsString();
         System.out.println("_____________GET________________");
@@ -85,7 +85,7 @@ public class FacilitiesControllerTest {
     }
     @Test
     void testPOSTExists() throws Exception {
-        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(service.saveData(f)).thenReturn(f);
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/facilities/save/facilities").content(asJsonString(f))
         .contentType(MediaType.APPLICATION_JSON)
@@ -102,7 +102,7 @@ public class FacilitiesControllerTest {
 
     @Test
     void testPOSTExistsNA() throws Exception {
-        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(service.getByUid("DRRR")).thenReturn(List.of(f));
         Mockito.when(service.saveData(f)).thenReturn(f);
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/facilities/save/facilities").content(asJsonString(f))
@@ -120,7 +120,7 @@ public class FacilitiesControllerTest {
 
     @Test
     void testPOSTExistsBR() throws Exception {
-        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(service.getByUid("DRRR")).thenThrow(RuntimeException.class);
         Mockito.when(service.saveData(f)).thenReturn(f);
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/facilities/save/facilities").content(asJsonString(f))
@@ -139,7 +139,7 @@ public class FacilitiesControllerTest {
     // PUT
     @Test
     void testPUTExistsNA() throws Exception {
-        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(service.update(f)).thenReturn(f);
         String result = mockMvc.perform(MockMvcRequestBuilders.put("/facilities/update/facilities").content(asJsonString(f))
         .contentType(MediaType.APPLICATION_JSON)
@@ -160,7 +160,7 @@ public class FacilitiesControllerTest {
 
     @Test
     void testPUTExists() throws Exception {
-        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(service.getByUid("DRRR")).thenReturn(List.of(f));
         Mockito.when(service.update(f)).thenReturn(f);
         String result = mockMvc.perform(MockMvcRequestBuilders.put("/facilities/update/facilities").content(asJsonString(f))
@@ -179,7 +179,7 @@ public class FacilitiesControllerTest {
 
     @Test
     void testPUTExistsBR() throws Exception {
-        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f = new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(service.getByUid("DRRR")).thenThrow(RuntimeException.class);
         Mockito.when(service.update(f)).thenReturn(f);
         String result = mockMvc.perform(MockMvcRequestBuilders.put("/facilities/update/facilities").content(asJsonString(f))
@@ -199,7 +199,7 @@ public class FacilitiesControllerTest {
     // DELETE
     @Test
     void testDELExists() throws Exception {
-        Mockito.when(service.getById("ab")).thenReturn(List.of(new Facilities("ab", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD")));
+        Mockito.when(service.getById("ab")).thenReturn(List.of(new Facilities("ab", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","")));
         Mockito.when(service.delete("ab")).thenReturn(true);
         String result = mockMvc.perform(MockMvcRequestBuilders.delete("/facilities/delete/facilities/{id}","ab"))
         .andExpect(status().isOk())

@@ -33,7 +33,7 @@ public class FacilitiesServiceTest {
     // GET
     @Test
     void testWhetherFacilityExists() throws Exception {
-        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(repo.findBy_id("cd")).thenReturn(List.of(f));
         List<Facilities> result = service.getById("cd");
         System.out.println("_____________GET________________");
@@ -44,7 +44,7 @@ public class FacilitiesServiceTest {
 
     @Test
     void testWhetherFacilityExistsBR() throws Exception {
-        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(repo.findBy_id("cd")).thenThrow(RuntimeException.class);
         List<Facilities> result = service.getById("cd");
         System.out.println("_____________GETBR________________");
@@ -57,7 +57,7 @@ public class FacilitiesServiceTest {
     // POST
     @Test
     void testWhetherPOSTExists() throws Exception {
-        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(repo.save(f)).thenReturn(f);
         Facilities result = service.saveData(f);
         System.out.println("_____________POST________________");
@@ -68,7 +68,7 @@ public class FacilitiesServiceTest {
 
     @Test
     void testWhetherPOSTExistsBR() throws Exception {
-        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(repo.save(f)).thenThrow(RuntimeException.class);
         Facilities result = service.saveData(f);
         System.out.println("_____________POSTBR________________");
@@ -80,7 +80,7 @@ public class FacilitiesServiceTest {
     // PUT
     @Test
     void testWhetherPUTExists() throws Exception {
-        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(repo.save(f)).thenReturn(f);
         Facilities result = service.update(f);
         System.out.println("_____________PUT________________");
@@ -91,7 +91,7 @@ public class FacilitiesServiceTest {
 
     @Test
     void testWhetherPUTExistsBR() throws Exception {
-        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(repo.save(f)).thenThrow(RuntimeException.class);
         Facilities result = service.update(f);
         System.out.println("_____________PUTBR________________");
@@ -103,7 +103,7 @@ public class FacilitiesServiceTest {
     // DELETE
     @Test
     void testWhetherDELExists() throws Exception {
-        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(repo.deleteBy_id("cd")).thenReturn(true);
         Boolean result = service.delete("cd");
         System.out.println("_____________DELETE________________");
@@ -114,7 +114,7 @@ public class FacilitiesServiceTest {
 
     @Test
     void testWhetherDELExistsBR() throws Exception {
-        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD");
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","");
         Mockito.when(repo.deleteBy_id("cd")).thenThrow(RuntimeException.class);
         Boolean result = service.delete("cd");
         System.out.println("_____________DELETEBR________________");
