@@ -124,4 +124,15 @@ public class FacilitiesServiceTest {
         System.out.println("_____________________________");
         assertEquals(false,result);
     }
+
+    // GET IMAGE
+    @Test
+    void testWhetherFacilityFileExists() throws Exception {
+        Facilities f= new Facilities("cd", List.of("fsdf"), "Sai", "DRRR", "REUEI", "DFSD", "DFSD","D:\\varun\\college\\trustrace\\code\\java\\supply_chain\\1.jpg");
+        Mockito.when(repo.findByImagePath(Mockito.anyString())).thenReturn(List.of(f));
+        byte[] result = service.getByFileName("D:\\varun\\college\\trustrace\\code\\java\\supply_chain\\1.jpg");
+        System.out.println("_____________GET________________");
+        System.out.println(result);
+        System.out.println("_____________________________");
+    }
 }
