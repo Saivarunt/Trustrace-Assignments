@@ -1,6 +1,8 @@
 package com.example.supply_chain.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,20 +138,27 @@ public class FacilitiesController {
 	@PutMapping("/update/image/{facilityUid}")
 	public ResponseEntity<String> uploadImageToFacilitySystem(@PathVariable String facilityUid,@RequestParam("image")MultipartFile file) {
 		try {
-			List<Facilities> data = service.getByUid(facilityUid);
-			if(data.isEmpty()==false){
-			String uploadImage = service.uploadFacilitywithFile(data.get(0),file);
-			if (uploadImage.equals("Unsuccessful")){
-				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
-					.body(uploadImage);
+			File nf = new File(file.getOriginalFilename());
+			if(Files.probeContentType(nf.toPath())!=null && Files.probeContentType(nf.toPath()).split("/")[0].equals("image")){
+				List<Facilities> data = service.getByUid(facilityUid);
+				if(data.get(0).equals(new Facilities())){
+					return new ResponseEntity<String>("No Data Found ", HttpStatus.NOT_FOUND);
+				}
+				else{
+					String uploadImage = service.uploadFacilitywithFile(data.get(0),file);
+					if (uploadImage.equals("Unsuccessful")){
+						return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+							.body(uploadImage);
+					}
+					else{
+						return ResponseEntity.status(HttpStatus.OK)
+							.body(uploadImage);
+					}
+
+				}
 			}
 			else{
-				return ResponseEntity.status(HttpStatus.OK)
-					.body(uploadImage);
-			}
-			}
-			else{
-				return new ResponseEntity<String>("No Data Found ", HttpStatus.NOT_FOUND);
+				return new ResponseEntity<String>("No Allowed", HttpStatus.BAD_REQUEST);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

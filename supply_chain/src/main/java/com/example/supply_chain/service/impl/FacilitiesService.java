@@ -108,7 +108,6 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 		String filePath=FOLDER_PATH+file.getOriginalFilename();
 		f.setImagePath(filePath);
         Facilities fileData = update(f);
-
         try {
 			file.transferTo(new File(filePath));
 		} catch (IllegalStateException e) {
@@ -118,14 +117,14 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 		}
 
         if (fileData != new Facilities()) {
-            return "file uploaded successfully : " + filePath;
+            // return "file uploaded successfully : " + filePath;
+			return "success";
         }
 		else{
 			return "Unsuccessful";
 		}
 	}
 
-	@Override
 	public Boolean deleteImage(Facilities f,String fileName) {
 		f.setImagePath("");
 		update(f);
