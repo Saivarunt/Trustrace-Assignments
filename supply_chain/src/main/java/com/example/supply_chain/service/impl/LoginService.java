@@ -25,10 +25,11 @@ public class LoginService {
     }
     public String validateToken(String token,String name){
         // throw new RuntimeException(); // Exception test
-        
-        if(token.equals(generateToken(name, ""))){
-            return "Valid";
-        }
-        return "Invalid";
+        Jws<Claims> j=Jwts.parser().setSigningKey("*U(8hj908ns98daniasudfniawur97q2e7r2934892rnu213rn09217349782190348y12").parseClaimsJws(token);
+        // if(token.equals(generateToken(name, ""))){
+        //     return "Valid";
+        // }
+        // return "Invalid";
+        return j.getBody().getSubject();
     }
 }

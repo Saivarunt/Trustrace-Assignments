@@ -37,7 +37,7 @@ public class LoginController {
     
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<?> runtimeExeHandle(){
-        return new ResponseEntity<>("Runtime EXE", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("UNAUTHORIZED EXE", HttpStatus.UNAUTHORIZED);
     }
     
     @ExceptionHandler(value = NullPointerException.class)
