@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1[data-test]{
+        color: brown;
+    }
+</style>
+<body>
+    <h1 data-test="testheading">Mock</h1>
+    <form>
+        <label for="inp1">First Name</label>
+        <input type="text" id="inp1" name="input1" required>
+        <input type="submit">
+    </form>
+    <div>
+        <textarea name="textarea1" id="ta1" cols="30" rows="10" required></textarea>
+        <input type="submit">
+    </div>
+    <select name="selection" id="s1" required>
+        <option value="">None</option>
+    </select>
+    
+    <table>
+        <tr>
+            <th>heading</th>
+        </tr>
+        <tr>
+            <td>data</td>
+        </tr>
+    </table>
+</body>
+</html>
