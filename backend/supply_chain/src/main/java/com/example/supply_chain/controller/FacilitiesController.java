@@ -33,7 +33,7 @@ public class FacilitiesController {
 	@Autowired
 	FacilitiesServiceInterface service;
 	
-	private final String FOLDER_PATH="D:/varun/college/trustrace/code/java/supply_chain/image_files/";
+	private final String FOLDER_PATH="D:\\varun\\college\\trustrace\\code\\java\\backend\\supply_chain\\image_files";
 
 	@GetMapping("/select/facilities")
 	public ResponseEntity<List<Facilities>> getAllFacilities(){

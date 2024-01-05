@@ -24,7 +24,7 @@ public class FacilitiesService implements FacilitiesServiceInterface{
 	@Autowired
 	DaoInterface dao;
 	
-	private final String FOLDER_PATH="D:/varun/college/trustrace/code/java/supply_chain/image_files/";
+	private final String FOLDER_PATH="D:\\varun\\college\\trustrace\\code\\java\\backend\\supply_chain\\image_files";
 
 	public List<Facilities> getAllData(){
 		List<Facilities> list = new ArrayList<>();
